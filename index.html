@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abel Wenning's Portfolio of Work</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>
+      WDD330: Web Frontend Development II
+      <br />
+      Abel Wenning's Portfolio of Work
+    </h1>
+    <section class="flexRow">
+      <div id="listOfLinks">
+        <ul>
+          <li onmouseover="previewPane.src = 'notes.html'">
+            <a href="">Notes</a>
+          </li>
+        </ul>
+
+        <ol id="projectsList"></ol>
+      </div>
+      <iframe id="previewPane"></iframe>
+    </section>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
