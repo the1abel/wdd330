@@ -3,10 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Week 1</title>
+    <title>Week 1 | Story Writer</title>
     <link rel="stylesheet" href="../style.css" />
-  </head>
+
+    <style>
+      button {margin: .25rem}
+      textarea {
+        background-color: lightyellow;
+        width: 100%;
+        height: 250px;
+      }
+    </style>
+
+<script>
+  function listStories() {
+    const storyDisplay = document.getElementById("story_display");
+    storyDisplay.innerHTML = "";
+
+    for (const s in localStorage) {
+      if (localStorage.hasOwnProperty(s)) {
+        storyDisplay.innerHTML +=
+            `<button onclick="loadStory('${s}')">${s}</button><br>`;
+      }
+    }
+  }
+
+  function loadStory(storyName = null) {
+    const nameInput = document.getElementById("name_input");
+    if (storyName) {
+      nameInput.value = storyName;
+    }
+    storyName = storyName || nameInput.value;
+    const storyHTML = localStorage.getItem(storyName);
+    document.getElementById("story_editor").value = storyHTML;
+    document.getElementById("story_display").innerHTML = "";
+   }
+
+   function saveStory() {
+     const storyName = document.getElementById("name_input").value;
+     const storyHTML = document.getElementById("story_editor").value;
+     localStorage.setItem(storyName, storyHTML);
+    }
+    
+    function displayStory() {
+      const storyHTML = document.getElementById("story_editor").value;
+      document.getElementById("story_display").innerHTML = storyHTML;
+    }
+
+    function deleteStory() {
+      const storyName = document.getElementById("name_input").value;
+      const storyHTML = localStorage.removeItem(storyName);
+      document.getElementById("name_input").value = "";
+      document.getElementById("story_editor").value = "";
+      document.getElementById("story_display").innerHTML = "";
+     }
+
+</script>
+</head>
   <body>
-    <h1>Week 1</h1>
+    <h1>Week 1 | Story Writer</h1>
+
+    <label for="name_input">Story Name:</label>
+    <input id="name_input"></input>
+
+    <section>
+      <button onclick="listStories()">List Stories</button>
+      <button onclick="loadStory()">Find and Edit It</button>
+      <button onclick="saveStory()">Save It</button>
+      <button onclick="displayStory()">Display It</button>
+      <button onclick="deleteStory()">Delete It</button>
+    </section>
+    <textarea id="story_editor" placeholder="Write a totally awesome story here."></textarea>
+    <section id="story_display"></section>
   </body>
 </html>
