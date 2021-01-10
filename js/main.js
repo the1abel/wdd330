@@ -1,6 +1,6 @@
 const projectsObj = {
-  "Week 01: LocalStorage": "week01/index.html",
-  "Week 02: Arrays, Logic, Loops, and Functions": "week02/index.html",
+  "Week 01: LocalStorage": "week01",
+  "Week 02: Arrays, Logic, Loops, and Functions": "week02",
 };
 
 const projectsList = document.getElementById("projectsList");
