@@ -7,37 +7,87 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <button onclick="window.history.back()">
-        &#8592; Back to Portfolio of Projects
-      </button>
-    </header>
-    <h1>Abel's Notes</h1>
-    <!-- Week 1 -->
-    <h2>Week 1</h2>
-    <p>
-      <code>localStorage</code> methods are <code>setItem(key, value)</code>,
-      <code>getItem(key)</code>, <code>removeItem(key)</code>, and <code>clear()</code>
-    </p>
+    <div id="content"></div>
 
-    <h3>Mobile-first Design</h3>
-    <ul>
-      <li>Know your users better than they know themselves.</li>
-      <li>Number of taps affects users' perception of speed.</li>
-      <li>Google: 1/2 second delay = 20% drop in traffic.</li>
-      <li>Bing: 2 second delay = 4% drop in revenue.</li>
-      <li>AOL: Fastest 10% of users stay 50% longer.</li>
-      <li>Remember single-hand position "reachability" for mobile design.</li>
-      <li>For ads on mobile, consider having the ad behind the content and (a) gap(s) in
-        the content so that a small window scrolls past the full ad without consuming
-        screen real estate; it also looks unique and interesting.</li>
-    </ul>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      let mdText = `# Abel's Notes
+Week 1
+----------------------------------------
+  |localStorage| methods are |setItem(key, value)|,
+  |getItem(key)|, |removeItem(key)|, and |clear()|
 
-    <p>Question: What would localStorage be used for in a legit app other than keeping a
-      user's username and maybe a screen arrangement of some sort?  It seems that
-      everything else should persist on the server.</p>
 
-    <!-- Week 2 -->
-    <h2>Week 2</h2>
+### Mobile-first Design
+ - Know your users better than they know themselves.
+ - Number of taps affects users' perception of speed.
+ - Google: 1/2 second delay = 20% drop in traffic.
+ - Bing: 2 second delay = 4% drop in revenue.
+ - AOL: Fastest 10% of users stay 50% longer.
+ - Remember single-hand position "reachability" for mobile design.
+ - For ads on mobile, consider having the ad behind the content and (a) gap(s) in
+      the content so that a small window scrolls past the full ad without consuming
+      screen real estate; it also looks unique and interesting.
+
+Question: What would localStorage be used for in a legit app other than keeping a
+    user's username and maybe a screen arrangement of some sort?  It seems that
+    everything else should persist on the server.
+
+Week 2
+----------------------------------------
+Reserved words:
+  |
+    abstract, await, boolean, break, byte, case, catch, char,
+    class, const, continue, debugger, default, delete, do,
+    double, else, enum, export, extends, false, final, finally,
+    float, for, function, goto, if, implements, import, in,
+    instanceof, int, interface, let, long, native, new, null,
+    package, private, protected, public, return, short, static,
+    super, switch, synchronized, this, throw, throws, transient,
+    true, try, typeof, var, volatile, void, while, with, yield
+  |
+
+Not reserved, but should be: |undefined, NaN, Infinity|
+
+|let| prevents overwriting any built-in methods
+
+|String#trim()| removes leading and trailing whitespace
+
+<code>|</code> is used for _**"template literals"**_ to allow line breaks and interpolation.
+
+|symbol| is a primitive datatype added by ES6 somewhat similar to a
+    string<br>
+    |Symbol.for(<unique ID : string>)| returns a |symbol| defined by a
+    unique ID<br>
+    The main use-case for symbols is as object property keys, which will be covered
+    in Chapter 5. The uniqueness of symbols, mean that it’s impossible for the names
+    of any properties to clash with each other if they are symbols
+    (more info on [Sitepoint](https://www.sitepoint.com/es6-symbols-uses/)).
+    
+Numbers:
+ - |0xAF| hexadecimal (base 16) notation starts with |0x|
+      (more info on [Wikipedia](http://en.wikipedia.org/wiki/Hexadecimal))
+ - |0o47| octal (base 8) notation starts with |0o|
+ - |0b1010| binary (base 2) notation starts with |0b|
+ - |1e6| or |1E6| exponential notation starts with |<number>e<power></number>|
+
+Some Number methods:
+ - |Number#toExponential()|
+ - |Number#toFixed([<num digits>])|
+ - |Number#toPrecision(<num digits>)| like |.toFixed()| but
+    omits trailing 0s
+ - |Number.isFinite(<number>)</number>|
+
+|2**3| for exponentiation (same as "=2^3" in Excel)
+
+|Infinity| / |-Infinity| error value for a number that is too big/small for JavaScript
+  (or by dividing by 0)
+
+
+
+`;
+
+      document.getElementById("content").innerHTML = marked(mdText.replaceAll("|", "`"));
+    </script>
   </body>
 </html>
