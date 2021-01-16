@@ -121,8 +121,30 @@ Use |Map#get()| instead of dot/square bracket notation.
 A Map can be converted to an Array using the spread operator.  
 |WeakMap| lacks the |size| property.
 
-|for-of| loop iterates over a Objects, Sets, and Maps in the order elements were added.  
+|for-of| loop iterates over a Objects, Sets, and Maps in the order elements were added.
 
+### Chapter 4: Functions
+3 types of function definitions:
+ - function declaration
+ - function expressions
+ - arrow function
+
+All functions return a value (|undefined| if not specified).
+
+Every function has a special variable (array without methods) called |arguments|, which
+    includes unnamed (extra) arguments.  
+Alternatively use the "rest" operator (similar to the spread operator) for multiple arguments:
+    |function example(...args) { /* code here */ }|  
+Variable assignments are not hoisted (function expressions and arrow functions are NOT hoisted)
+
+***Array Loop Methods:***  
+1. |Array#forEach((elem, index, arr) => /* do something */);|  
+2. |Array#map((elem, index, arr) => /* return replacement elem */);|
+    returns a new array that replaces each value with the return value of the callback  
+3. |Array#reduce((accumulator, elem, [, index[, arr]] )[, firstElemSubstitute] => { ___ });| 
+    the |accumulator| is remembered across iterations and is the final return value  
+4. |Array#filter((elem, index, arr) => if (___) return true)|
+    returns a new array with only elements that returned true  
 
 
 
