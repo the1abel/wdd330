@@ -137,7 +137,11 @@ Alternatively use the "rest" operator (similar to the spread operator) for multi
     |function example(...args) { /* code here */ }|  
 Variable assignments are not hoisted (function expressions and arrow functions are NOT hoisted)
 
-***Array Loop Methods:***  
+|Array#sort((a,b) => a < b ? -1 : 1);| pass a comparator to avoid Numbers being coerced to
+    Strings (default behavior of |Array#sort()|).  
+Do NOT use |(a,b) => a-b;| because it can result in a number that is too large or small for JS.
+
+***Array Iterators (Loop Methods):***  
 1. |Array#forEach((elem, index, arr) => /* do something */);|  
 2. |Array#map((elem, index, arr) => /* return replacement elem */);|
     returns a new array that replaces each value with the return value of the callback  
