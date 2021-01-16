@@ -6,7 +6,7 @@
     <title>Abel's Notes</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body style="padding: 1rem">
     <div id="content"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -35,6 +35,7 @@ Question: What would localStorage be used for in a legit app other than keeping 
 
 Week 2
 ----------------------------------------
+### Chapter 2: Programming Basics
 Reserved words:
   |
     abstract, await, boolean, break, byte, case, catch, char,
@@ -82,6 +83,47 @@ Some Number methods:
 
 |Infinity| / |-Infinity| error value for a number that is too big/small for JavaScript
   (or by dividing by 0)
+
+|==| is known as soft equality  
+|===| is known as hard equality  
+|Number.isNaN(<value>)| (ES6) only returns |true| for |NaN|,
+    and is necessary because |NaN === NaN| returns |false|    
+|isNaN(<value>)| (old global function) returns |true| for a |string|
+
+There are 6 primitive data types: |strings|, |symbols|, |numbers|, |Booleans|, |undefined|, and |null|.  
+Non-primitive data types, such as arrays, functions and objects, all have a type of |object|.  
+falsy values: "", '', \`\`, 0, -0, |NaN|, |false|, |null|, |undefined|
+
+### Chapter 3: Arrays, Logic, and Loops
+***Array:***  
+Destructuring: |const [x, y] = myArray;|  
+|Array#concat(<itemOrAnotherArray>);| is the older version of the spread operator
+    |[ ...myArray, ...anotherArray]|  
+|Array#slice(start[, end])| returns subarray  
+|Array#splice(start[, deleteCount[, item1[, item2[, ...]]]])| removes items from an array
+    (and returns them), optionally adding new items
+
+***Set:***  
+|const mySet = new Set();| for unique values, but does not allow square bracket notation
+    (seems to be a tree).  
+|Set#has()| is faster than |Array#includes()| or |Array#indexOf()|  
+Objects (incl. Arrays) are always considered unique by a Set.  
+A string passed into the constructor will be split into letters, but |Set#add()| will add
+    the string without splitting it.  
+A Set can be converted to an Array using the spread operator.  
+|WeakSet| can contain only objects, and  object in WeakSet can be garbage collected if
+    there is no other reference to it.  
+
+***Map:***  
+Key can be any data type (not just string, as is the case for an Object).  
+|Map#size| indicates number of properties.  
+Use |Map#get()| instead of dot/square bracket notation.  
+A Map can be converted to an Array using the spread operator.  
+|WeakMap| lacks the |size| property.
+
+|for-of| loop iterates over a Objects, Sets, and Maps in the order elements were added.  
+
+
 
 
 
