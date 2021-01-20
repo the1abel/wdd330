@@ -9,6 +9,8 @@ h1 {text-align: center}
 h2 {color: aqua}
 h3 {color: aquamarine}
 
+ol, ul {margin-top: -1em}
+
 a {
   color: cornflowerblue;
   font-weight: 700;
