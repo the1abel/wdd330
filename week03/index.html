@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Week 3</title>
     <link rel="stylesheet" href="../style.css" />
-    <script src="main.js"></script>
     <style>
-      .dojo {
+      section {
         border: 1px solid grey;
         border-radius: 7px;
         padding: 1rem;
         margin: 1rem;
       }
-      .correct {background-color: rgb(173, 230, 182)}
-      .wrong {background-color: lightpink}
+      .correct {
+        background-color: rgb(173, 230, 182);
+      }
+      .wrong {
+        background-color: lightpink;
+      }
     </style>
   </head>
   <body>
@@ -23,8 +26,39 @@
     <br />
     <br />
 
+    <section id="heroTesting">
+      <header>
+        <h1 id="title">Justice League</h1>
+      </header>
+      <ul id="roster">
+        <li class="hero">Superman</li>
+        <li class="vigilante hero" id="bats">Batman</li>
+        <li class="hero">Wonder Woman</li>
+      </ul>
+
+      <button onclick="replaceFirstWithThird()">Replace First With Third</button>
+
+      <br><br><br>
+
+      <form action="addHero">
+        <label for="heroName" id="heroNameLabel"
+          >Input to test <code>htmlFor</code> and "Insert <code>innerHTML</code>":
+          <input type="text" class="heroName" id="heroInput" />
+        </label>  
+      </form>  
+
+      <button onclick="insertHtml()">
+        Insert <code>innerHTML</code> (from above input, to test <code>&lt;script&gt;</code> insertion)
+      </button>
+      <br>
+
+      <button onclick="addScriptTag()">Add <code>&lt;script&gt;</code> (programmatically)</button>
+
+      <div id="target"></div>
+    </section>
+
     <button onclick="initCh6QuizProj()">Run Chapter 6 Quiz Ninja Project</button>
-    <br />
+    <br>
 
     <section class="dojo">
       <div class="quiz-body">
@@ -38,5 +72,7 @@
         <div id="info"></div>
       </div>
     </section>
+
+    <script src="main.js"></script>
   </body>
 </html>

@@ -296,17 +296,20 @@ DOM navigation:
  - •parentNode•
  - •nextSibling• * (returns •null• if it is the last node in the collection)
  - •previousSibling• * (returns •null• if it is the first node in the collection)  
- \\* may return an empty text node
+ \\* ***CAUTION:*** may return an empty text node
  
-•textContent• returns a concatenation of all child text nodes (without any HTML markup)  
+•Element#textContent• returns a concatenation of all child text nodes (without any HTML markup)  
 •Element#classList• returns a DOMTokenList object w/ numbered properties for each class name
     and a "value" property with the full class list  
-►  Methods: •.add() .remove() .replace() .toggle()•
+►  Methods: •.add() .remove() .replace() .toggle()•  
+•Element.getAttribute(attributeName)•  
+•Element.setAttribute(attributeName, value)•  
 
 ***Dynamic Markup:***  
 •document.createElement('p')•  
-•Element#textContent• get/set the attribute of an element  
+•Element#textContent• get/set the text content of an element  
 •document.createTextNode('text here')• useful to establish the text for a not-yet-created element  
+•Text#nodeValue• get/set the text of a text node  
 •parentElement.appendChild(newElement)• adds as (or moves to) last child position  
 •parentElement.insertBefore(nextSiblingElement, newElement)• adds (moves) before a child element  
 •parentElement.removeChild(element)•  
@@ -317,6 +320,10 @@ DOM navigation:
 
 •<script>• tags added via •innerHtml• cannot be called,
     although a •<script>• tag can be called when added with •Element#appendChild()•
+
+
+
+### Chapter 7: Events
 
 
 
