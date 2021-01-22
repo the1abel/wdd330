@@ -6,10 +6,37 @@
     <title>Week 3</title>
     <link rel="stylesheet" href="../style.css" />
     <script src="main.js"></script>
+    <style>
+      .dojo {
+        border: 1px solid grey;
+        border-radius: 7px;
+        padding: 1rem;
+        margin: 1rem;
+      }
+      .correct {background-color: rgb(173, 230, 182)}
+      .wrong {background-color: lightpink}
+    </style>
   </head>
   <body>
     <h1>Week 3</h1>
     <button onclick="initCh5QuizProj()">Run Chapter 5 Quiz Ninja Project</button>
-    <br>
+    <br />
+    <br />
+
+    <button onclick="initCh6QuizProj()">Run Chapter 6 Quiz Ninja Project</button>
+    <br />
+
+    <section class="dojo">
+      <div class="quiz-body">
+        <header>
+          <div id="score">Score: <strong>0</strong></div>
+          <h1>Chapter 6 Quiz Ninja!</h1>
+        </header>
+        <div id="questionPrompt"></div>
+        <div id="question"></div>
+        <div id="result"></div>
+        <div id="info"></div>
+      </div>
+    </section>
   </body>
 </html>

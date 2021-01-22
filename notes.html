@@ -11,11 +11,16 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
+      /*
+    Symbol  AltCode
+    •       7
+    ►       16
+*/
       let mdText = `# Abel's Notes
 Week 1
 ----------------------------------------
-  |localStorage| methods are |setItem(key, value)|,
-  |getItem(key)|, |removeItem(key)|, and |clear()|
+  •localStorage• methods are •setItem(key, value)•,
+  •getItem(key)•, •removeItem(key)•, and •clear()•
 
 
 ### Mobile-first Design
@@ -33,11 +38,13 @@ Question: What would localStorage be used for in a legit app other than keeping 
     user's username and maybe a screen arrangement of some sort?  It seems that
     everything else should persist on the server.
 
+
+
 Week 2
 ----------------------------------------
 ### Chapter 2: Programming Basics
 Reserved words:
-  |
+  •
     abstract, await, boolean, break, byte, case, catch, char,
     class, const, continue, debugger, default, delete, do,
     double, else, enum, export, extends, false, final, finally,
@@ -46,19 +53,19 @@ Reserved words:
     package, private, protected, public, return, short, static,
     super, switch, synchronized, this, throw, throws, transient,
     true, try, typeof, var, volatile, void, while, with, yield
-  |
+  •
 
-Not reserved, but should be: |undefined, NaN, Infinity|
+Not reserved, but should be: •undefined, NaN, Infinity•
 
-|let| prevents overwriting any built-in methods
+•let• prevents overwriting any built-in methods
 
-|String#trim()| removes leading and trailing whitespace
+•String#trim()• removes leading and trailing whitespace
 
-<code>|</code> is used for _**"template literals"**_ to allow line breaks and interpolation.
+<code>•</code> is used for ***"template literals"*** to allow line breaks and interpolation.
 
-|symbol| is a primitive datatype added by ES6 somewhat similar to a
+•symbol• is a primitive datatype added by ES6 somewhat similar to a
     string<br>
-    |Symbol.for(<unique ID : string>)| returns a |symbol| defined by a
+    •Symbol.for(<unique ID : string>)• returns a •symbol• defined by a
     unique ID<br>
     The main use-case for symbols is as object property keys, which will be covered
     in Chapter 5. The uniqueness of symbols, mean that it’s impossible for the names
@@ -66,62 +73,68 @@ Not reserved, but should be: |undefined, NaN, Infinity|
     (more info on [Sitepoint](https://www.sitepoint.com/es6-symbols-uses/)).
     
 Numbers:
- - |0xAF| hexadecimal (base 16) notation starts with |0x|
+ - •0xAF• hexadecimal (base 16) notation starts with •0x•
       (more info on [Wikipedia](http://en.wikipedia.org/wiki/Hexadecimal))
- - |0o47| octal (base 8) notation starts with |0o|
- - |0b1010| binary (base 2) notation starts with |0b|
- - |1e6| or |1E6| exponential notation starts with |<number>e<power></number>|
+ - •0o47• octal (base 8) notation starts with •0o•
+ - •0b1010• binary (base 2) notation starts with •0b•
+ - •1e6• or •1E6• exponential notation starts with •<number>e<power></number>•
 
 Some Number methods:
- - |Number#toExponential()|
- - |Number#toFixed([<num digits>])|
- - |Number#toPrecision(<num digits>)| like |.toFixed()| but
+ - •Number#toExponential()•
+ - •Number#toFixed([<num digits>])•
+ - •Number#toPrecision(<num digits>)• like •.toFixed()• but
     omits trailing 0s
- - |Number.isFinite(<number>)</number>|
+ - •Number.isFinite(<number>)</number>•
 
-|2**3| for exponentiation (same as "=2^3" in Excel)
+•2**3• for exponentiation (same as "=2^3" in Excel)
 
-|Infinity| / |-Infinity| error value for a number that is too big/small for JavaScript
+•Infinity• / •-Infinity• error value for a number that is too big/small for JavaScript
   (or by dividing by 0)
 
-|==| is known as soft equality  
-|===| is known as hard equality  
-|Number.isNaN(<value>)| (ES6) only returns |true| for |NaN|,
-    and is necessary because |NaN === NaN| returns |false|    
-|isNaN(<value>)| (old global function) returns |true| for a |string|
+•==• is known as soft equality  
+•===• is known as hard equality  
+•Number.isNaN(<value>)• (ES6) only returns •true• for •NaN•,
+    and is necessary because •NaN === NaN• returns •false•    
+•isNaN(<value>)• (old global function) returns •true• for a •string•
 
-There are 6 primitive data types: |strings|, |symbols|, |numbers|, |Booleans|, |undefined|, and |null|.  
-Non-primitive data types, such as arrays, functions and objects, all have a type of |object|.  
-falsy values: "", '', \`\`, 0, -0, |NaN|, |false|, |null|, |undefined|
+There are 6 primitive data types: •strings•, •symbols•, •numbers•, •Booleans•, •undefined•, and •null•.  
+Non-primitive data types, such as arrays, functions and objects, all have a type of •object•.  
+falsy values: "", '', \`\`, 0, -0, •NaN•, •false•, •null•, •undefined•
+
+
 
 ### Chapter 3: Arrays, Logic, and Loops
 ***Array:***  
-Destructuring: |const [x, y] = myArray;|  
-|Array#concat(<itemOrAnotherArray>);| is the older version of the spread operator
-    |[ ...myArray, ...anotherArray]|  
-|Array#slice(start[, end])| returns subarray  
-|Array#splice(start[, deleteCount[, item1[, item2[, ...]]]])| removes items from an array
-    (and returns them), optionally adding new items
+Destructuring: •const [x, y] = myArray;•  
+•Array#concat(<itemOrAnotherArray>);• is the older version of the spread operator
+    •[ ...myArray, ...anotherArray]•  
+•Array#slice(start[, end])• returns subarray  
+•Array#splice(start[, deleteCount[, item1[, item2[, ...]]]])• removes items from an array
+    (and returns them), optionally adding new items  
+•Array#indexOf(element)• returns index of first match  
+•Array#findIndex((element) => <some boolean expression>)• returns index of first true result
 
 ***Set:***  
-|const mySet = new Set();| for unique values, but does not allow square bracket notation
+•const mySet = new Set();• for unique values, but does not allow square bracket notation
     (seems to be a tree).  
-|Set#has()| is faster than |Array#includes()| or |Array#indexOf()|  
+•Set#has()• is faster than •Array#includes()• or •Array#indexOf()•  
 Objects (incl. Arrays) are always considered unique by a Set.  
-A string passed into the constructor will be split into letters, but |Set#add()| will add
+A string passed into the constructor will be split into letters, but •Set#add()• will add
     the string without splitting it.  
 A Set can be converted to an Array using the spread operator.  
-|WeakSet| can contain only objects, and  object in WeakSet can be garbage collected if
+•WeakSet• can contain only objects, and  object in WeakSet can be garbage collected if
     there is no other reference to it.  
 
 ***Map:***  
 Key can be any data type (not just string, as is the case for an Object).  
-|Map#size| indicates number of properties.  
-Use |Map#get()| instead of dot/square bracket notation.  
+•Map#size• indicates number of properties.  
+Use •Map#get()• instead of dot/square bracket notation.  
 A Map can be converted to an Array using the spread operator.  
-|WeakMap| lacks the |size| property.
+•WeakMap• lacks the •size• property.
 
-|for-of| loop iterates over a Objects, Sets, and Maps in the order elements were added.
+•for-of• loop iterates over a Objects, Sets, and Maps in the order elements were added.
+
+
 
 ### Chapter 4: Functions
 3 types of function definitions:
@@ -129,119 +142,121 @@ A Map can be converted to an Array using the spread operator.
  - function expressions
  - arrow function
 
-All functions return a value (|undefined| if not specified).
+All functions return a value (•undefined• if not specified).
 
-Every function has a special variable (array without methods) called |arguments|, which
+Every function has a special variable (array without methods) called •arguments•, which
     includes unnamed (extra) arguments.  
 Alternatively use the "rest" operator (similar to the spread operator) for multiple arguments:
-    |function example(...args) { /* code here */ }|  
+    •function example(...args) { /* code here */ }•  
 Variable assignments are not hoisted (function expressions and arrow functions are NOT hoisted)
 
-|Array#sort((a,b) => a < b ? -1 : 1);| pass a comparator to avoid Numbers being coerced to
-    Strings (default behavior of |Array#sort()|).  
-Do NOT use |(a,b) => a-b;| because it can result in a number that is too large or small for JS.
+•Array#sort((a,b) => a < b ? -1 : 1);• pass a comparator to avoid Numbers being coerced to
+    Strings (default behavior of •Array#sort()•).  
+Do NOT use •(a,b) => a-b;• because it can result in a number that is too large or small for JS.
 
 ***Array Iterators (Loop Methods):***  
-1. |Array#forEach((elem, index, arr) => /* do something */);|  
-2. |Array#map((elem, index, arr) => /* return replacement elem */);|
+1. •Array#forEach((elem, index, arr) => /* do something */);•  
+2. •Array#map((elem, index, arr) => /* return replacement elem */);•
     returns a new array that replaces each value with the return value of the callback  
-3. |Array#reduce((accumulator, elem, [, index[, arr]] )[, firstElemSubstitute] => { ___ });| 
-    the |accumulator| is remembered across iterations and is the final return value  
-4. |Array#filter((elem, index, arr) => if (___) return true)|
+3. •Array#reduce((accumulator, elem, [, index[, arr]] ) => { ___ }[, firstElemSubstitute]);• 
+    the •accumulator• is remembered across iterations and is the final return value  
+4. •Array#filter((elem, index, arr) => if (___) return true)•
     returns a new array with only elements that returned true  
 
-## Week 3
 
+
+Week 3
+----------------------------------------
 ### Chapter 5: Objects
-The |in| operator can be used to check whether an object has a particular property
-    (just like |Object#hasOwnProperty()|).
+The •in• operator can be used to check whether an object has a particular property
+    (just like •Object#hasOwnProperty()•).
 
-|Object.values()| works like |Object.keys()|, but returns an array of all the object’s values.  
-|Object.entries()| returns an array of key-value pairs: |for (const [key,value] of Object.entries(<myObject>)) { ___ }|
+•Object.values()• works like •Object.keys()•, but returns an array of all the object’s values.  
+•Object.entries()• returns an array of key-value pairs: •for (const [key,value] of Object.entries(<myObject>)) { ___ }•
 
-|const myObject2 = myObject1;| creates a pointer to |myObject1|, not a copy of it  
-|const myObject2 = { ...myObject1};| and |= Object.assign({}, myObject1);| create a shallow copy  
-|const myObject2 = JSON.parse(JSON.stringify(myObject1));| creates a deep copy
+•const myObject2 = myObject1;• creates a pointer to •myObject1•, not a copy of it  
+•const myObject2 = { ...myObject1};• and •= Object.assign({}, myObject1);• create a shallow copy  
+•const myObject2 = JSON.parse(JSON.stringify(myObject1));• creates a deep copy
 
-Named parameters is a good solution when a function has several optional parameters:  
-->    |function greet( {greeting='Hello',name,age=18} ) {|  
-->->    |return '\${greeting}! My name is \${name} and I am \${age} years old.';|  
-->    |}|
+•JSON.stringify()• ignores properties with functions for values
 
-|JSON.stringify()| ignores properties with functions for values
+098Named parameters is a good solution when a function has several optional parameters:  
+►    •function greet( {greeting='Hello',name,age=18} ) {•  
+►►     •return '\${greeting}! My name is \${name} and I am \${age} years old.';•  
+►    •}•
 
 ***Math:***  
-|Math| constants: |.PI .SQRT2 .SQRT1_2 .E .LN2 .LN10 .LOG2E .LOG10E|  
-|Math| methods: |.random() .abs() .round() .ceil() .floor()
-    .trunc()| (faster than |.floor()|)|
-    .exp() .pow() .sqrt() .cbrt() .hypot() .log() .log2() .log10() .max() .min()|  
-|Math| trig methods take parameters as radians: |.sin() .cos() .tan() .asin() .acos()
-    .atan() .sinh() .acosh() .tanh()|  
-|Math.random()| generates between 0 and 1,
+•Math• constants: •.PI .SQRT2 .SQRT1_2 .E .LN2 .LN10 .LOG2E .LOG10E•  
+•Math• methods: •.random() .abs() .round() .ceil() .floor()
+    .trunc()• (faster than •.floor()•)•
+    .exp() .pow() .sqrt() .cbrt() .hypot() .log() .log2() .log10() .max() .min()•  
+•Math• trig methods take parameters as radians: •.sin() .cos() .tan() .asin() .acos()
+    .atan() .sinh() .acosh() .tanh()•  
+•Math.random()• generates between 0 and 1,
     so multiply by any number to generate between 0 and that number  
 For high precision, consider [decimal.js](https://www.npmjs.com/package/decimal.js)
 
 ***Date:***  
-Constructor: |const now = new Date(<optionalDateString>);|  
-->  or pass integers: |new Date(year,month,day,hour,minutes,seconds,milliseconds)|  
-->  or pass integer timestamp: number of seconds since Epoch (1/1/1970)  
-Display full day, date, time, and timezone via |now.toString()|  
-|Date| methods without |.getUTC|...|()| equivalents:
-    |.getTime() .getTimezoneOffset()| (returns minutes between local and UTC)  
-|Date| methods with |.getUTC|...|()| equivalent:
-    |.getDay() .getDate() .getMonth() .getFullYear() .getHour() .getMinutes()
-    .getSeconds() .getMilliseconds() .getTime()| (returns Epoch timestamp)  
-Setters return Epoch timestamp (e.g.: |now.setFullYear(2022)|)  
+Constructor: •const now = new Date(<optionalDateString>);•  
+►  or pass integers: •new Date(year,month,day,hour,minutes,seconds,milliseconds)•  
+►  or pass integer timestamp: number of seconds since Epoch (1/1/1970)  
+Display full day, date, time, and timezone via •now.toString()•  
+•Date• methods without •.getUTC•...•()• equivalents:
+    •.getTime() .getTimezoneOffset()• (returns minutes between local and UTC)  
+•Date• methods with •.getUTC•...•()• equivalent:
+    •.getDay() .getDate() .getMonth() .getFullYear() .getHour() .getMinutes()
+    .getSeconds() .getMilliseconds() .getTime()• (returns Epoch timestamp)  
+Setters return Epoch timestamp (e.g.: •now.setFullYear(2022)•)  
 To ease working with timezones, consider [moment.js](https://www.npmjs.com/package/moment)
 
 ***RegExp:***  
 2 Constructors:  
-1. literal notation: |const pattern = /[a-zA-Z]+ing$/;|  
-    ->Faster for repeated use because it only has to be evaluated once.  
-2. new operator: |const pattern = new RegExp('[a-zA-Z]+' + myStr);|  
-    ->Allows dynamic input (because it takes a string, such as myStr), evaluated for every use.
+1. literal notation: •const pattern = /[a-zA-Z]+ing$/;•  
+    ►Faster for repeated use because it only has to be evaluated once.  
+2. new operator: •const pattern = new RegExp('[a-zA-Z]+' + myStr);•  
+    ►Allows dynamic input (because it takes a string, such as myStr), evaluated for every use.
 
-|RegExp#test(myString)| returns |true| or |false|  
-|RegExp#exec(myString)| returns array of matches or |null|  
-|String#search(myRegExp)| returns position # in the string (begins at 0) where pattern matched, or -1 if no match  
-|String#match(myRegExp)| returns array of match (or matches if g flag is used) or null  
-|String#matchAll(myRegExp)| returns an iterator of all results  
-|String#replaceAll(myRegExp, “new string”)| returns a new string with all matches of a pattern replaced  
-|String#split(myRegExp)| returns an array split at each match  
+•RegExp#test(myString)• returns •true• or •false•  
+•RegExp#exec(myString)• returns array of matches or •null•  
+•String#search(myRegExp)• returns position # in the string (begins at 0) where pattern matched, or -1 if no match  
+•String#match(myRegExp)• returns array of match (or matches if g flag is used) or null  
+•String#matchAll(myRegExp)• returns an iterator of all results  
+•String#replaceAll(myRegExp, “new string”)• returns a new string with all matches of a pattern replaced  
+•String#split(myRegExp)• returns an array split at each match  
 
 Regular Expressions (1st parameter):  
-->   Tokens:  
-->->	th	->“th” (contiguous)  
-->->	[th]	->“t” or “h” (non-contiguous)  
-->->	[a-e]	->any letter between a and e (e.g., a, b, c, d, or e)  
-->->	[^th]	->any letter except “t” or “h” (i.e., it “inverts” the set)  
-->   Modifiers (placed after a token):  
-->->	.		->any character (except line breaks)  
-->->	*		->0 or more occurrences  
-->->	+		->1 or more occurrences  
-->->	?		->0 or 1 occurrences  
-->->	?=n		->any string that is followed by a specific string n  
-->->	?!n		->any string that is not followed by a specific string n  
-->->	xy{4}z	->braces for repeated characters (e.g., “xyyyyz”)
-    ->y{4,6} = 4-6 “y”s     ->y{4,} = 4 or more “y”s	->y{,6} = up to 6 “y”s  
-->->	^...	->must be at beginning of string  
-->->	…$		->must be at end of string  
-->->NOTE: these are all Greedy (identify the longest match) unless a ? is placed after the modifier to make it Lazy (identify the shortest match)  
-->   Metacharacters (aka Special Characters):  
-->->	\\w \\W	->word (alphanumeric) = [A-Za-z_0-9]	->non-Word = [^A-Za-z_0-9]  
-->->	\\d \\D	->digit = [0-9]							->->->->->->non-Digit = [^0-9]  
-->->	\\s \\S	->white-space = [\\r\\t\\n\\f]			->->->->non-whiteSpace = [^ \\r\\t\\n\\f]  
-->->	\\b \\B	->boundary (beginning or end of word)	->not boundary
+►   Tokens:  
+►►	th		►“th” (contiguous)  
+►►	[th]	►“t” or “h” (non-contiguous)  
+►►	[a-e]	►any letter between a and e (e.g., a, b, c, d, or e)  
+►►	[^th]	►any letter except “t” or “h” (i.e., it “inverts” the set)  
+►   Modifiers (placed after a token):  
+►►	.		►any character (except line breaks)  
+►►	*		►0 or more occurrences  
+►►	+		►1 or more occurrences  
+►►	?		►0 or 1 occurrences  
+►►	?=n		►any string that is followed by a specific string n  
+►►	?!n		►any string that is not followed by a specific string n  
+►►	xy{4}z	►braces for repeated characters (e.g., “xyyyyz”)
+    ►y{4,6} = 4-6 “y”s     ►y{4,} = 4 or more “y”s	►y{,6} = up to 6 “y”s  
+►►	^...	►must be at beginning of string  
+►►	…$		►must be at end of string  
+►►NOTE: these are all Greedy (identify the longest match) unless a ? is placed after the modifier to make it Lazy (identify the shortest match)  
+►   Metacharacters (aka Special Characters):  
+►►	\\w \\W	►word (alphanumeric) = [A-Za-z_0-9]	►non-Word = [^A-Za-z_0-9]  
+►►	\\d \\D	►digit = [0-9]							►►►►►►non-Digit = [^0-9]  
+►►	\\s \\S	►white-space = [\\r\\t\\n\\f]			►►►►non-whiteSpace = [^ \\r\\t\\n\\f]  
+►►	\\b \\B	►boundary (beginning or end of word)	►not boundary
 
 Flags (2nd parameter):  
-->->	g	->global  
-->->	i	->case insensitive  
-->->	m	->multiline
+►►	g	►global  
+►►	i	►case insensitive  
+►►	m	►multiline
 
 Sub-patterns can be created inside a regular expression by placing them inside parentheses. These are known as capturing groups.
 Each capturing group will also be stored in special predefined variables $1, $2 etc.  Example:  
-->	|const link = "<a href='https://www.sitepoint.com' title='Oh Yeah!'>Awesome Web Resources</a>"|  
-->	|const mdLink = link.replace(/<a href='(.*?)'.*?>(.*?)<\/a>/g, "[$2]($1)");| 
+►	•const link = "<a href='https://www.sitepoint.com' title='Oh Yeah!'>Awesome Web Resources</a>"•  
+►	•const mdLink = link.replace(/<a href='(.*?)'.*?>(.*?)<\/a>/g, "[$2]($1)");• 
 
 References:
  - [regextester.com](https://www.regextester.com)
@@ -250,13 +265,70 @@ References:
 
 
 
+### Chapter 6: DOM
+All DOM nodes have a numeric code signifying their type (•.nodeType• property):
+
+|•.nodeType•|Type|
+|:---------:|---|
+|1          |elements|
+|2          |attribute|
+|3          |text|
+|8          |comment|
+|9          |body|
+
+•DOMNode#nodeName• returns the type of element  
+
+DOM shortcuts:
+ - •document.body•
+ - •document.images•
+ - •document.links• (•<a>• and •<area>• with •href• attribute)
+ - •document.anchors• (•<a>• with •name• attribute)
+ - •document.forms•
+
+•Array.from(<nodeList>)• and •[...<nodeList>]• will create an array from a node list,
+    although node lists are iterable with a for-of loop
+
+DOM navigation:
+ - •childNodes• includes text nodes and white space as empty text notes (as NodeList)
+ - •children• includes elements only (as HTMLCollection)
+ - •firstChild• *
+ - •lastChild• *
+ - •parentNode•
+ - •nextSibling• * (returns •null• if it is the last node in the collection)
+ - •previousSibling• * (returns •null• if it is the first node in the collection)  
+ \\* may return an empty text node
+ 
+•textContent• returns a concatenation of all child text nodes (without any HTML markup)  
+•Element#classList• returns a DOMTokenList object w/ numbered properties for each class name
+    and a "value" property with the full class list  
+►  Methods: •.add() .remove() .replace() .toggle()•
+
+***Dynamic Markup:***  
+•document.createElement('p')•  
+•Element#textContent• get/set the attribute of an element  
+•document.createTextNode('text here')• useful to establish the text for a not-yet-created element  
+•parentElement.appendChild(newElement)• adds as (or moves to) last child position  
+•parentElement.insertBefore(nextSiblingElement, newElement)• adds (moves) before a child element  
+•parentElement.removeChild(element)•  
+•parentElement.replaceChild(newElement, oldElement)•  
+•oldElement.replaceWith(newElement)•
+
+•window.getComputedStyle(element)• returns a CSSStyleDeclaration object, which has a property for each computed style  
+
+•<script>• tags added via •innerHtml• cannot be called,
+    although a •<script>• tag can be called when added with •Element#appendChild()•
+
+
+
+
+ ## To be continued...
 `;
 
-      document.getElementById("content").innerHTML = 
-          marked(mdText
-              .replaceAll("|", "`")
-              .replaceAll("->","<span style='margin-left:2rem'></span>")
-          );
+      document.getElementById("content").innerHTML = marked(
+        mdText
+          .replaceAll("•", "`")
+          .replaceAll("►", "<span style='margin-left:2rem'></span>")
+      );
     </script>
   </body>
 </html>
