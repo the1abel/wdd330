@@ -216,3 +216,114 @@ function initCh6QuizProj() {
 
   game.start(quiz);
 }
+
+
+/*
+ * Chapter 7: Testing
+ */
+function handleEvent(event){
+  event.target.classList.toggle("highlight");
+  console.log(`${event.type} event at screen: (${event.screenX},${event.screenY}) page: (${event.pageX},${event.pageY}) client: (${event.screenX},${event.screenY})`);
+}
+
+// mouse events
+document.getElementById("click").addEventListener("click", handleEvent);
+document.getElementById("dblclick").addEventListener("dblclick", handleEvent);
+document.getElementById("mouse").addEventListener("mouseover", handleEvent);
+document.getElementById("mouse").addEventListener("mouseout", handleEvent);
+
+// key events
+addEventListener("keypress", (event) => {console.log("keypress:", event.key, event)});
+addEventListener('keydown', (event) => {
+  if (event.key === 'c' && event.ctrlKey) console.log('Ctrl+c was pressed');
+});
+addEventListener('keydown', (event) => {
+  if (event.key === 'PageDown' && event.ctrlKey && event.shiftKey) {
+    console.log('Ctrl+Shift+PageDown was pressed');
+  }
+});
+
+// touch event
+addEventListener("touchstart", (event) => {console.log("touchstart:", event)});
+
+// preventDefault()
+document.getElementById("googleLink").addEventListener("click", (event) => {
+  event.preventDefault();
+  console.log("I killed this link.");
+});
+
+
+/**
+ * Chapter 7: Quiz Ninja Project
+ */
+document.getElementById("ch7QuizProjStartBtn").addEventListener("click", initCh7QuizProj);
+
+function initCh7QuizProj() {
+  // View Object
+  const view = {
+    score: document.querySelector('#score strong'),
+    question: document.getElementById('question'),
+    result: document.getElementById('result'),
+    info: document.getElementById('info'),
+    start: document.getElementById("ch7QuizProjStartBtn"),
+    render(target, content, attributes) {
+      for(const key in attributes) {
+        target.setAttribute(key, attributes[key]);
+      }
+      target.innerHTML = content;
+      document.getElementById("questionPrompt").innerHTML = "";
+    },
+    show(element) {
+      element.style.display = 'block';
+      element.style.backgroundColor= "green"; // just do demonstrate that this method works
+    },
+    hide(element) {
+      element.style.display = 'none';
+    },
+  };
+
+  const game = {
+    start(quiz) {
+      view.hide(view.start);
+      this.questions = [...quiz];
+      this.score = 0;
+
+      // main game loop
+      for (const question of this.questions) {
+        this.question = question;
+        this.ask();
+      }
+
+      // end of main game loop
+      this.gameOver();
+    },
+
+    ask() {
+      const question = `What is ${this.question.name}'s real name?`;
+      view.render(view.question, question);
+      const response = prompt(question);
+      this.check(response);
+    },
+
+    check(response) {
+      const answer = this.question.realName;
+      if (response === answer) {
+        view.render(view.result, 'Correct!', {'class':'correct'});
+        this.score++;
+        view.render(view.score, this.score);
+        alert('Correct!');
+      } else {
+        view.render(view.result, `Wrong! The correct answer was ${answer}`, {'class':'wrong'});
+        alert(`Wrong! The correct answer was ${answer}`);
+      }
+    },
+    
+    gameOver() {
+      view.render(view.info,
+          `Game over.<br>You scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
+      view.show(view.start);
+    },
+  };
+
+  game.start(quiz);
+}

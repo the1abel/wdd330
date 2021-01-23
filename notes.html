@@ -324,8 +324,30 @@ DOM navigation:
 
 
 ### Chapter 7: Events
+[List of event types](https://developer.mozilla.org/en-US/docs/Web/Events)  
+Mouse sequence: •mousedown•, •mouseup•, then •click•  
+Key sequence: •keydown•, •keypress• (only for character and Enter keys), then •keyup•  
+•KeyboardEvent.key• indicates the key pressed  
+►   For older browsers, •KeyboardEvent.keyCode• may be used or a NPM keycode library  
+•Event.shiftKey•, •.ctrlKey•, •.altKey•, and •.metaKey• properties will be •true•
+    if those keys were held down while another •event• occurred.  
 
+Touch sequence: •touchstart•, •touchmove•, •touchenter•, •touchleave•, •touchcancel•, •touchend•  
+•TouchEvent.touches• is an array of multiple touch events  
+[hammerjs](https://www.npmjs.com/package/hammerjs) and [zingtouch](https://www.npmjs.com/package/zingtouch)
+    handle gestures
+•TouchEvent.radiusX• and •.radiusY• indicate the area covered  
+•TouchEvent.force• indicates pressure between 0 and 1  
+•TouchEvent.identifier• uniquely identifies the event  
 
+•Element#removeEventListener(eventType, namedFunction)• doesn't work for anonymous functions
+
+•event.screenX• screen (top-left of Primary monitor)  
+•event.clientX• client ("usually" browser window, BUT is same as screen for Chrome & Chromium Edge on Windows)  
+•event.pageX• actual HTML page (takes into account if the page has scrolled)
+
+•event.cancellable• is •false• if the browser will not permit •event.preventDefault()•  
+•event.defaultPrevented• indicates if the default event was prevented  
 
 
  ## To be continued...

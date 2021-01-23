@@ -58,6 +58,12 @@ code {
   font-family: "Consolas", monospace;
 }
 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 /* Portfolio Project List Page */
 .flexRow {display: flex}
 
