@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Abel's Notes</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      body,
+      html {
+        color: white;
+        background-color: black;
+      }
+      th {
+        background-color: rgb(49, 53, 55);
+      }
+      strong {
+        color: orangered;
+      }
+    </style>
   </head>
   <body style="padding: 1rem">
     <div id="content"></div>
@@ -167,6 +180,23 @@ Do NOT use •(a,b) => a-b;• because it can result in a number that is too lar
 
 Week 3
 ----------------------------------------
+### •this• Keyword
+•this• ***Rules:***
+1. by default •this• refers to the nearest parent object when it is called/assigned,
+    which may be the global object (•window• in a browser, •global• in Node.js)
+2. when •new• is used to instantiate an object, •this• refers to the instance of the object
+3. in an arrow function, •this• refers to (is implicitly bound to) the object in which the function was defined
+    (not from which the function is called)
+4. •call()•, •apply()•, or •bind()• (methods of the •Function• object) can change what •this• refers to
+5. when •"use strict"• mode is enabled, •this• will not implicitly bind to the global object
+    (leaving it •undefined• if not referring to another object)
+6. in an event callback, •this• refers to •event.currentTarget•
+    (the •Element• to which the listener is attached),
+    unless •"use strict"• mode is enabled or an arrow function is used
+
+NOTE:
+- •setTimeout()• is a method on the •window• object (see Rules 1, 3, and 4)
+
 ### Chapter 5: Objects
 The •in• operator can be used to check whether an object has a particular property
     (just like •Object#hasOwnProperty()•).
@@ -350,7 +380,8 @@ Touch sequence: •touchstart•, •touchmove•, •touchenter•, •touchlea
 •event.defaultPrevented• indicates if the default event was prevented  
 
 
- ## To be continued...
+
+## To be continued...
 `;
 
       document.getElementById("content").innerHTML = marked(

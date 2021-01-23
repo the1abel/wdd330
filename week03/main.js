@@ -1,3 +1,4 @@
+// "use strict" // for testing `this` in function declaration in the global scope
 const quiz = [
   { name: "Superman", realName: "Clark Kent" },
   { name: "Wonder Woman", realName: "Diana Prince" },
@@ -327,3 +328,108 @@ function initCh7QuizProj() {
 
   game.start(quiz);
 }
+
+
+/*
+ * `this` Testing
+ */
+console.log("\n***instantiated objects***")
+class Something {
+  constructor (name) {
+    this.name = name;
+  }
+
+  thing = 5;
+
+  test = this.thing + " ***let's see if this works";
+
+  display() {
+    console.log(`this.thing (${this.name}):`, this.thing);
+  }
+
+  display2() {
+    displayFromGlobal(this.name);
+  }
+
+  delayedDisplay() {
+    setTimeout(function() {console.log(`this.thing in delayed, anonymous arrow function(${this.name}):`, this.thing)}, 100);
+  }
+}
+
+const thing1 = new Something("thing1");
+const thing2 = new Something("thing2");
+console.log("***test:", thing1.test);
+thing1.display();
+thing1.display2();
+thing1.thing = 1;
+thing1.display();
+thing1.display2();
+thing2.display();
+
+
+console.log("\n***global variables***")
+var thing = 4; // the variable is hoisted, but the assignment is not hoisted
+console.log("this.thing (global):", this.thing);
+
+
+console.log("\n***simple function***")
+function displayFromGlobal(calledBy) {
+  // ERROR ***IF*** in "use strict" mode
+  console.log(`this.thing (${calledBy} from global):`, this.thing);
+}
+displayFromGlobal();
+
+
+console.log("\n***simple object***")
+const somethingElse = {
+  thing: 25,
+  display() {
+    console.log(`this.thing (simple obj):`, this.thing);
+  },
+
+  // ERROR because `this` is the global context for simple objects
+  functionCall() {
+    setTimeout(function() {this.functionCall2("function declaration")}, 100);
+  },
+
+  // SUCCESS `self: this` binds `this` to the context inside this simple object
+  self: this,
+  functionCall2() {
+    setTimeout(function() {self.functionCall2("function declaration (with self)")}, 100);
+  },
+  arrowFunctionCall() {
+    setTimeout(() => {this.functionCall2("arrow function")}, 100);
+  },
+
+  // SUCCESS because arrow function binds `this` to the context inside this simple object
+  functionCall2(functionDefinition) {
+    console.log(`this from functionCall2 via ${functionDefinition}:`, this);
+  },
+}
+somethingElse.display();
+somethingElse.functionCall();
+somethingElse.functionCall2();
+somethingElse.arrowFunctionCall();
+
+
+// console.log("\n***instantiated object (again)***")
+thing2.display();
+thing2.display2();
+thing2.delayedDisplay();
+
+// `this` is `event.target` for function declaration
+document.getElementById("thisChecker")
+.addEventListener('click', function(event) {console.log("this:", this)});
+// `this` is `window` for arrow function
+document.getElementById("thisCheckerArrow")
+  .addEventListener('click', (event) => {console.log("this:", this)});
+
+const someOtherThing = {
+  prop1: "value",
+  prop2: function() {
+    return this.prop1;
+  },
+  prop3: "another " + this.prop1,
+};
+console.log("someOtherThing.prop2():", someOtherThing.prop2());
+console.log("someOtherThing.prop3:", someOtherThing.prop3);
