@@ -144,6 +144,26 @@ console.log("Object.getPrototypeOf(thing).constructor.name:", Object.getPrototyp
 
 console.log("Object.getOwnPropertyDescriptor(thing, 'prop1':", Object.getOwnPropertyDescriptor(thing, 'prop1'));
 
+function mixin(target, ...objects) {
+  for (const object of objects) {
+    if (typeof object === 'object') {
+      for (const key of Object.keys(object)) {
+        if (typeof object[key] === 'object') {
+          target[key] = Array.isArray(object[key]) ? [] : {};
+          mixin(target[key],object[key]); // recursive for deep copy
+        } else {
+          Object.assign(target,object);
+        }
+      }
+    }
+  }
+  return target;
+}
+
+const mixinProps = {PI: Math.PI, abs: Math.abs};
+mixin(thing, mixinProps);
+console.log("post-mixin addition of thing.PI:", thing.PI);
+console.log("post-mixin addition of thing.abs:", thing.abs(-25));
 
 /*
  * Chapter 12 Quiz Ninja!
@@ -242,3 +262,13 @@ const game12 = {
 view12.response.addEventListener('click', (event) => game12.check(event), false);
 
 
+
+/*
+ * Chapter 15 Experimenting
+ */
+
+
+
+/*
+ * Chapter 15 Quiz Ninja!
+ */

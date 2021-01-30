@@ -412,7 +412,8 @@ function handleSubmit(event) {
 ***Polymorphism*** (multiple shapes) specifies minimum properties and methods that a child "implements".
     JavaScript is limited to extend only one class (multiple classes in C++, Java, C#),
     but children can override parent's properties.  
-A ***Mixin*** is a way of adding properties of some objects to another object without using inheritance.
+A ***Mixin*** is a way of adding properties of some objects to another object without using inheritance
+    (aka Composition over/instead of Inheritance).
 
 ***Constructor function*** (won't throw an error if •new• is forgotten, instead leaves •redDice• as •undefined•):
 •••
@@ -464,8 +465,29 @@ String.prototype.trim = String.prototype.trim || function() {
 
 Mixins are best accomplished with a custom/factory function,
     because •Object.assign()• creates a shallow copy of pointers to the original enumerable property.
- 
+•••
+function mixin(target, ...objects) {
+  for (const object of objects) {
+    if (typeof object === 'object') {
+      for (const key of Object.keys(object)) {
+        if (typeof object[key] === 'object') {
+          target[key] = Array.isArray(object[key]) ? [] : {};
+          mixin(target[key],object[key]); // recursive for deep copy
+        } else {
+          Object.assign(target,object);
+        }
+      }
+    }
+  }
+  return target;
+}
+•••
+
 Returning •this• allows functions to be chained.
+
+
+
+### Chapter 15: Modern JavaScript
 
 
 
