@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --progress --profile && copy /Y src\\index.html a\\index.html"
+    "build": "webpack --progress --profile && copy /Y src\\index.html ..\\webpackExample.html"
   },
   "author": "Abel Wenning",
   "license": "ISC",
