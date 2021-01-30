@@ -210,7 +210,7 @@ The •in• operator can be used to check whether an object has a particular pr
 
 •JSON.stringify()• ignores properties with functions for values
 
-098Named parameters is a good solution when a function has several optional parameters:  
+Named parameters is a good solution when a function has several optional parameters:  
 ►    •function greet( {greeting='Hello',name,age=18} ) {•  
 ►►     •return '\${greeting}! My name is \${name} and I am \${age} years old.';•  
 ►    •}•
@@ -403,6 +403,69 @@ function handleSubmit(event) {
   console.log(values);
 }
 •••
+
+
+
+### Chapter 12: OOP
+***Encapsulation*** hides implementation details, only exposing public methods  
+***Inheritance*** defines properties and methods that a child "extends" (single class)  
+***Polymorphism*** (multiple shapes) specifies minimum properties and methods that a child "implements".
+    JavaScript is limited to extend only one class (multiple classes in C++, Java, C#),
+    but children can override parent's properties.  
+A ***Mixin*** is a way of adding properties of some objects to another object without using inheritance.
+
+***Constructor function*** (won't throw an error if •new• is forgotten, instead leaves •redDice• as •undefined•):
+•••
+function Dice(sides = 6) {
+  this.sides = sides;
+  this.roll = function() { /* code here */ };
+  let _privateProperty = "red"; // instance private property (relies on getter/setter)
+  this.getPrivateProperty = () => {return _privateProperty;};
+}
+const redDice = new Dice();
+•••
+
+ES6 •class• syntax is implicitly in strict mode and throws an error if •new• is omitted accidentally.  
+Use •static myFunc()• to declare a property as static (•Dice.myFunc()•, NOT •redDice.myFunc()•).  
+
+•const redDice = Object.create(Dice)• will create an instance of an object, which can be used as a prototype.  
+However, •redDice instanceOf Dice;• will return false using this technique.
+
+JS Prototypal inheritance adds a •prototype• property to all derived children.  
+•Object#prototype• is a pointer to an object on the parent class, which contains the •constructor• function.  
+Also, properties can be dynamically added to the •Object#prototype• object.  
+Avoid adding enumerable values (arrays & objects) to •Object#prototype•, due to shallow copying
+    (not a problem for values set within the constructor function in the class definition).  
+Added properties are then available on all children via:
+ - •redDice.constructor.prototype•
+ - •Object.getPrototypeOf(redDice)•
+ - •redDice.__proto__• (non-standard)
+ - •redDice.addedProp•
+
+Set prototype via •Object.setPrototypeOf(obj, prototype)•, but the constructor class needs to be reset.  
+
+Verify/find parent via:
+ - •redDice instanceOf Dice;• returns true
+ - •Dice.prototype.isPrototypeOf(redDice);• returns true
+ - •Object.getPrototypeOf(redDice).constructor.name• returns "Dice" (parent class name)
+
+•Object.defineProperty(obj, prop, descriptor)• can make a property not enumerable, writable, or
+    create a getter or setter (in lieu of having a value—either value OR getter/setter).  
+•Object.getOwnPropertyDescriptor(obj, prop)• returns the •descriptor• object.  
+•Object#propertyIsEnumerable(propNameAsString)• verifies enumerability.
+
+"Monkey-patching" is adding properties to built-in objects.  
+Polyfill example (with lazy evaluation):
+•••
+String.prototype.trim = String.prototype.trim || function() {
+  return this.replace(/^\s+|\s+$/,'');
+}
+•••
+
+Mixins are best accomplished with a custom/factory function,
+    because •Object.assign()• creates a shallow copy of pointers to the original enumerable property.
+ 
+Returning •this• allows functions to be chained.
 
 
 

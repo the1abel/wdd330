@@ -9,7 +9,8 @@ h1 {text-align: center}
 h2 {color: aqua}
 h3 {color: aquamarine}
 
-ol, ul {margin-top: -1em}
+ol, ul, pre {margin-top: -1em}
+pre {margin-left: 2em}
 
 a {
   color: cornflowerblue;
