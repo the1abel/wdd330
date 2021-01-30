@@ -381,6 +381,32 @@ Touch sequence: •touchstart•, •touchmove•, •touchenter•, •touchlea
 
 
 
+Week 4
+----------------------------------------
+### Chapter 8: Forms
+•<button>• (without a type) and •<input type="image">• will act as a submit button by default  
+Clicking an •<input type="image">• submits the form with URL query parameters of •x• and •y•
+    (coordinates inside the image where clicked)  
+•form.action• can be set to change the destination for a form submission
+
+A very elegant way to get all of a form's data (to then handle via JS)
+    ([source](https://www.learnwithjason.dev/blog/get-form-values-as-json/)),
+    however •Object.forEntries()• is only available on newer browsers:
+•••
+document.forms.myForm.addEventListener('submit', handleSubmit);
+
+function handleSubmit(event) {
+  event.preventDefault();
+  const data = new FormData(event.target);
+  const values = Object.fromEntries(data.entries());
+  values.topics = data.getAll("topics"); // get multi-select values (such as checkboxes)
+  console.log(values);
+}
+•••
+
+
+
+
 ## To be continued...
 `;
 

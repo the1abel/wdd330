@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 4</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      label {display: flex; align-items: center}
+      label input,
+      label textarea,
+      label select {margin-left: .5rem; margin-right: .5rem}
+      .correct {
+        background-color: rgb(173, 230, 182);
+      }
+      .wrong {
+        background-color: lightpink;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Week 4</h1>
+
+    <!-- Chapter 8 Experimenting -->
+    <section class="framed">
+      <h2>Chapter 8: Forms (Experimenting)</h2>
+
+      <form action="" class="framed">
+        <label>Lion
+          <input type="image" alt="Lion" style="width: 20vw"
+              src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a55fa29c-bf42-4629-8128-30a6b1cfbd3e/dbz26n1-d4525599-f382-4647-84af-91012fdd896a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYTU1ZmEyOWMtYmY0Mi00NjI5LTgxMjgtMzBhNmIxY2ZiZDNlXC9kYnoyNm4xLWQ0NTI1NTk5LWYzODItNDY0Ny04NGFmLTkxMDEyZmRkODk2YS5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.dL0w7cxh12Oq1XuVDeXfWmX4II6opMyG8oAg821JjG0">
+        </label>
+      </form>
+
+      <form name="test8" action="" class="framed" >
+        <label for="Name">Name
+          <input type="text" name="Name" id="Name"
+              pattern="^M.*"
+              oninvalid="setCustomValidity('Input must begin with &quot;M&quot;')"
+              onchange="try{setCustomValidity('')}catch(e){}"
+              required>
+              <!-- A custom validation function onkeyup yields better UX (to clear error msg) -->
+        </label>
+        <label for="birthDate">Birth Date
+          <input type="date" name="birthDate" id="birthDate">
+        </label>
+
+        <label for="typeInMe">Type in me, PLEASE
+          <textarea name="typeInMe" id="typeInMe" placeholder="Type in me"
+              cols="30" rows="3"
+              onkeyup="parrot(event)"
+              onchange="logParrot(event)"
+              oninvalid="setCustomValidity(`C'mon, Bro!  Fill me in!  Don't leave me hangin'.`)"
+              autofocus required></textarea>
+              <!-- REMEMBER to clear setCustomValidity() via onchange -->
+        </label>
+
+        <p>
+          <label for="javascript">
+            <input type="checkbox" name="topics" id="javascript" value="javascript" />
+            JavaScript
+          </label>
+
+          <label for="html">
+            <input type="checkbox" name="topics" id="html" value="html" />
+            HTML
+          </label>
+
+          <label for="css">
+            <input type="checkbox" name="topics" id="css" value="css" />
+            CSS
+          </label>
+        </p>
+
+        <p>What type of hero are you?</p>
+        <label for='hero'>
+          <input type='radio' name='category' value='Hero' id='hero'>
+          Hero
+        </label>
+        <label for='villain'>
+          <input type='radio' name='category' value='Villain' id='villain'>
+          Villain
+        </label>
+        <label for='anti-hero'>
+          <input type='radio' name='category' value='Antihero' id='anti-hero'>
+          Anti-Hero
+        </label>
+
+        <label for="powers">Powers
+          <select name="powers" id="powers" size="2" multiple>
+            <option value="fly">Fly</option>
+            <option value="laserVision">Laser vision</option>
+            <option value="bulletProof">Bullet proof</option>
+          </select>
+        </label>
+
+        <button>Btn without type == submit</button>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </form>
+      <div id="parrot" class="framed"></div>
+    </section>
+
+
+    <!-- Chapter 8 Quiz Ninja -->
+    <section class="framed" id="quiz8">
+      <h2>Chapter 8 Quiz Ninja!</h2>
+      <button id="start8" onclick="game8.start(quiz)">Start game</button>
+      <div>
+        <div id="score">Score: <strong>0</strong></div>
+        <div id="question"></div>
+        <form id='response'>
+          <input name='answer' type='text'>
+          <button type='submit'>Submit answer</button>
+        </form>
+        <div id="result"></div>
+        <div id="info"></div>
+      </div>
+
+    </section>
+
+
+    <script src="main.js"></script>
+  </body>
+</html>

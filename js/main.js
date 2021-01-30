@@ -2,6 +2,7 @@ const projectsObj = {
   "Week 01: LocalStorage": "week01",
   "Week 02: Arrays, Logic, Loops, and Functions": "week02",
   "Week 03: Objects, DOM, and Events": "week03",
+  "Week 04: Forms, OOP, Modern JavaScript": "week04",
 };
 
 const projectsList = document.getElementById("projectsList");
