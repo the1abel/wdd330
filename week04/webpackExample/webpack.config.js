@@ -8,7 +8,7 @@ module.exports = {
   context: __dirname + '/src',
   entry: './js/main.js',
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/output',
     filename: 'bundle.min.js',
   },
   module: {
