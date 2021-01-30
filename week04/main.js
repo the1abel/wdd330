@@ -264,11 +264,8 @@ view12.response.addEventListener('click', (event) => game12.check(event), false)
 
 
 /*
- * Chapter 15 Experimenting
+ * Chapter 15 Experimenting & Quiz Ninja!
  */
+// See 'week04/webpackExample/' for sample code and Quiz Ninja.
 
 
-
-/*
- * Chapter 15 Quiz Ninja!
- */

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webpack Example</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <style>
+      .correct {background-color: rgb(173, 230, 182)}
+      .wrong {background-color: lightpink}
+    </style>
+  </head>
+  <body>
+    <h1>Webpack Example</h1>
+    <p>Epoch time is <span id="epoch"></span></p>
+
+    <section class="framed">
+      <header>
+        <div id="timer">Time: <strong>30</strong></div>
+        <div id="score">Score: <strong>0</strong></div>
+        <div id="hiScore">High Score: <strong></strong></div>
+      </header>
+      <div id="question"></div>
+      <div id="response"></div>
+      <div id="result"></div>
+      <div id="info"></div>
+      <button id="start">Click to Start</button>
+    </section>
+
+    <script src="bundle.min.js"></script>
+  </body>
+</html>

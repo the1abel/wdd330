@@ -488,8 +488,77 @@ Returning •this• allows functions to be chained.
 
 
 ### Chapter 15: Modern JavaScript
+Coupling: how dependent/connected is the data between functions/modules (loose coupling is better).
 
+ES6 modules are always in strict mode, and their top level is •undefined• (not the global object).  
+•export• defines the variables to be exported from modules.  
+•export default• defines the single variable that can be imported without being explicitly named.  
+•module.exports• is used for Node.js (pre-ES6 "Common JS").  
 
+MV* is used to describe JS frameworks in lieu of MVC, MVP (Presenter), MVVM (ViewModel),
+    MVW (Whatever [Angular]), etc.  
+A custom •controller• object may contain methods to add listeners.  
+A custom •view• object may contain methods to render/modify HTML.  
+A model object, •sessionStorage•, or •localStorage• may contain data.  
+
+Common templating engines: Handlebars, Pug, EJS, Mustache, Nunjucks
+
+[Web Components](https://www.webcomponents.org) are a new development involving W3C to standardize components.
+
+•npm i --save-dev jest• (or •npm i -D jest•) adds to •package.json•'s •devDependencies• array.  
+Common commands:
+ - •npm list• lists all dependencies
+ - •npm outdated•
+ - •npm outdated -g•
+ - •npm update•
+ - •npm update jest•
+ - •npm update -g•
+ - •npm r --save lodash• (•r• == •remove•/•uninstall•)
+ - •npm r --save-dev jest•
+ - •npm r -g lodash•
+
+[unpkg](https://unpkg.com) is a CDN for everything on NPM.  
+Some libraries on unpkg (e.g., React) put the burden of processing onto the browser, rather than when the code is transpiled.
+
+Yarn is an alternative to NPM, which prohibits packages from running on install.
+
+Popular minifiers:
+ - [YUI Compressor](https://www.npmjs.org/package/yui)
+ - [Google's Closure](https://developers.google.com/closure/compiler/)
+ - [UglifyJS](https://github.com/mishoo/UglifyJS)
+
+Common file structure:
+ - •src• code to be transpiled
+ - •src/lib• libraries to be transpiled
+ - •src/lib/app• app modules (an alternative to •src/css•, •src/js•, •src/views•, and •src/test•)
+ - •src/vendor• 3rd-party libraries (alternative to •node_modules• or •src/lib•)
+ - •src/css•
+ - •src/js•
+ - •src/views•
+ - •src/test•
+ - •dist• transpiled output (may only contain •index.html•, •bundle.min.js•, and •styles.css•)
+
+Webpack uses "loaders" to transpile, minify, lint, test, and preprocess CSS  
+Install: •npm i --save-dev webpack webpack-cli•  
+Run: •./node_modules/.bin/webpack src/js/main.js dist/bundle.js•  
+Configure:  
+•./webpack.config.js• _content_:
+•••
+module.exports = {
+  entry: './src/js/main.js',
+  output: {
+    filename: 'bundle.js',
+    path: __dirname + '/dist',
+  }
+};
+•••
+•./package.json• _content_:
+•••
+"scripts": {
+  "build": "webpack"
+}
+•••
+Then run (using config file): •npm run build•
 
 
 ## To be continued...
