@@ -4,6 +4,7 @@ const projectsObj = {
   "Week 03: Objects, DOM, and Events": "week03",
   "Week 04: Forms, OOP, Modern JavaScript": "week04",
   "Week 05: Testing and Debugging": "week05",
+  "TODO App": "todoApp",
 };
 
 const projectsList = document.getElementById("projectsList");

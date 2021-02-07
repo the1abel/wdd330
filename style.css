@@ -9,9 +9,7 @@ h1 {text-align: center}
 h2 {color: aqua}
 h3 {color: aquamarine}
 
-p, ul, ol, table {margin-left: 3em}
 ol, ul, pre {margin-top: -1em}
-pre {margin-left: 7em}
 
 a {
   color: cornflowerblue;
@@ -50,8 +48,14 @@ textarea,
   font-weight: 400;
   text-decoration: none;
   background-color: #efefef;
+  cursor: pointer;
 }
-.btn:hover {text-decoration: none}
+.btn:hover {
+  text-decoration: none;
+  color:darkblue;
+  border-color: darkblue;
+  background-color: #f7f7f7;
+}
 
 textarea {padding: .5rem}
 
@@ -65,6 +69,51 @@ code {
   border-radius: 7px;
   padding: 1rem;
   margin: 1rem;
+}
+
+#modalBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255,255,255,.85);
+  display: flex;
+  justify-content: center; /* horizontal */
+  align-items: center; /* vertical */
+}
+
+.modalFrame {
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+  margin: 1rem;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between; /* horizontal */
+  align-items: center; /* vertical */
+  background-color: lightblue;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding-left: .5rem;
+}
+#closeModal {
+  font-size: 2.05rem;
+  border-top-right-radius: 4px;
+  padding: 0 .5rem;
+}
+#closeModal:hover {
+  color: white;
+  background-color: lightcoral;
+  cursor: pointer;
+  transition: background-color .5s;
+}
+
+#modalContent {
+  min-width: 200px;
+  padding: .5rem;
 }
 
 .clearfix::after {
