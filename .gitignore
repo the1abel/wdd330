@@ -19,7 +19,8 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
-coverage
+# commented out (included in Git commits) to include Jest report from Week 5
+#coverage
 *.lcov
 
 # nyc test coverage
