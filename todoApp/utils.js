@@ -20,25 +20,19 @@ export function createModal(
   
   // event listers to close modal and call callbackOnClose()
   const closeWithCallback = (event) => {
-    if (event.target === document.getElementById('modalBackground') ||
-        event.target === document.getElementById('closeModal')) {
+    if ((event.target &&
+         (event.target === document.getElementById('modalBackground') ||
+          event.target === document.getElementById('closeModal'))) ||
+        (event.key && event.key === 'Escape')) {
       closeModal();
       if (callbackOnClose) callbackOnClose();
-      document.body.removeEventListener('keyup', closeWithCallbackFromEsc);
+      document.body.removeEventListener('keyup', closeWithCallback);
     }
   }
   
-  const closeWithCallbackFromEsc = (event) => {
-    if (event.key === 'Escape') {
-      closeWithCallback();
-      if (callbackOnClose) callbackOnClose();
-      document.body.removeEventListener('keyup', closeWithCallbackFromEsc);
-    }
-  }
-
   document.getElementById('closeModal').addEventListener('click', closeWithCallback);
   document.getElementById('modalBackground').addEventListener('click', closeWithCallback);
-  document.body.addEventListener('keyup', closeWithCallbackFromEsc);
+  document.body.addEventListener('keyup', closeWithCallback);
 }
 
 /**

@@ -42,6 +42,8 @@ export default class List {
         // if modal was closed without giving it a name, then remove the empty list
     });
 
+    document.getElementById('newName').focus();
+
     document.getElementById('nameList').addEventListener('click', () => {
       const newName = document.getElementById('newName').value;
       if (newName) {
@@ -50,6 +52,7 @@ export default class List {
         closeModal();
         list.renderEditableList();
         List.saveAllLists();
+        document.getElementById('addItemInput').focus();
       }
     });
   }
@@ -79,7 +82,20 @@ export default class List {
    * RENDER EDITABLE LIST for user to add/edit/delete list items
    */
   renderEditableList() {
-    createModal({ modalHeader: this.listName, callbackOnClose: List.renderAllLists });
+    const modalHeader = `<div class="editableListHeader">
+                          <span>${this.listName}</span>
+                          <span id="deleteList">Delete</span>
+                          <span id="renameList">Edit</span>
+                        </div>`;
+    createModal({ modalHeader, callbackOnClose: List.renderAllLists });
+
+    document.getElementById('deleteList')
+      .addEventListener('click', () => {this.deleteList()});
+
+    document.getElementById('renameList')
+      .addEventListener('click', () => {this.renameList()});
+
+    // create modal content
     const modalContent = document.getElementById('modalContent');
     const itemsContainer = document.createElement('div');
     itemsContainer.className = 'itemsContainer';
@@ -196,6 +212,33 @@ export default class List {
     this.items.splice(i, 1);
     List.saveAllLists();
     event.target.parentElement.remove();
+  }
+
+  renameList() {
+    closeModal();
+    const modalContent = `<label for="newName">New list name
+                            <input type="text" name="newName" id="newName"
+                                value="${this.listName}">
+                          </label>
+                          <button id="renameList" class="btn">Save</button>`;
+    createModal({ modalContent, modalHeader: 'Change list name' });
+
+    document.getElementById('newName').focus();
+
+    document.getElementById('renameList').addEventListener('click', () => {
+      const newName = document.getElementById('newName').value;
+      if (newName) {
+        this.listName = newName;
+        closeModal();
+        List.renderAllLists();
+        this.renderEditableList();
+        List.saveAllLists();
+      }
+    });
+  }
+
+  deleteList() {
+    alert('need to create deleteList() method'); // DEBUG
   }
 
   static showAllListsInConsole() {

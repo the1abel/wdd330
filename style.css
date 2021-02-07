@@ -91,8 +91,8 @@ code {
 }
 
 .modalHeader {
-  display: flex;
-  justify-content: space-between; /* horizontal */
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center; /* vertical */
   background-color: lightblue;
   border-top-left-radius: 4px;
