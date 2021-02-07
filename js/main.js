@@ -3,6 +3,7 @@ const projectsObj = {
   "Week 02: Arrays, Logic, Loops, and Functions": "week02",
   "Week 03: Objects, DOM, and Events": "week03",
   "Week 04: Forms, OOP, Modern JavaScript": "week04",
+  "Week 05: Testing and Debugging": "week05",
 };
 
 const projectsList = document.getElementById("projectsList");

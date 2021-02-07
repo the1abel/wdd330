@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 5</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      label {display: block; margin-bottom: .25rem}
+    </style>
+  </head>
+  <body>
+    <h1>Week 5</h1>
+
+    <!-- Chapter 10 -->
+    <section class="framed">
+      <h2>Chapter 10: Testing and Debugging</h2>
+
+      <form name="errorCheck">
+        <label for="text">
+          <input type="text" name="text" id="text">
+        </label>
+
+        <label for="withError">
+          <input type="radio" name="throwError" id="withError" value="withError">
+          Throw error (in console)
+        </label>
+        <label for="withWarning">
+          <input type="radio" name="throwError" id="withWarning" value="withWarning">
+          Show warning (in console)
+        </label>
+        <label for="withoutError">
+          <input type="radio" name="throwError" id="withoutError" value="withoutError">
+          No error (in console)
+        </label>
+        <label for="withDebugger">
+          <input type="radio" name="throwError" id="withDebugger" value="withDebugger">
+          No error, with debugger (in console)
+        </label>
+
+        <button type="submit">Test Input</button>
+      </form>
+      
+      <h3 style="margin-top: 4rem">Jest</h3>
+      <p>Go to the <code>jest</code> test result
+          <a href="./jestExample/coverage/">coverage report page</a>.</p>
+
+    </section>
+
+
+    <!-- Star Game -->
+    <section class="framed" id="starGame">
+      <h2>Star "Game"</h2>
+      <p>Because the Quiz Ninja project was overly-simple for this chapter,
+          I made my own "game".</p>
+      <p>Move the star using your keyboard arrows (tap or hold-down arrow keys).</p>
+      <p>Watch the console for feedback.</p>
+      <p>
+        Speed: <span id="speed"></span>
+        &nbsp; &nbsp;
+        <button id="faster">&xutri;</button>
+        <button id="slower">&xdtri;</button>
+      </p>  
+      <div >
+        <div></div>
+      </div>
+    </section>
+
+    <script src="main.js"></script>
+  </body>
+</html>

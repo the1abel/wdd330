@@ -507,6 +507,7 @@ Common templating engines: Handlebars, Pug, EJS, Mustache, Nunjucks
 
 •npm i --save-dev jest• (or •npm i -D jest•) adds to •package.json•'s •devDependencies• array.  
 Common commands:
+ - •npm init -y• or •--yes• to initialize an npm project with all defaults
  - •npm list• lists all dependencies
  - •npm outdated•
  - •npm outdated -g•
@@ -514,7 +515,7 @@ Common commands:
  - •npm update jest•
  - •npm update -g•
  - •npm r --save lodash• (•r• == •remove•/•uninstall•)
- - •npm r --save-dev jest•
+ - •npm r --save-dev jest• or •-D•
  - •npm r -g lodash•
 
 [unpkg](https://unpkg.com) is a CDN for everything on NPM.  
@@ -561,13 +562,61 @@ module.exports = {
 Then run (using config file): •npm run build•
 
 
+
+Week 5
+----------------------------------------
+### Chapter 10: Testing and Debugging
+Error types: system, programmer, user  
+•"use strict"• mode requires variables to be declared with •var•/•let•/•const•,
+otherwise a •ReferenceError• will be thrown and execution halted  
+•"use strict"• can be declared within a function to limits its scope  
+ES6 modules •"use strict"• implicitly  
+
+Some linting tools:
+ - [JS Lint](http://jslint.com/)
+ - [JS Hint](http://jshint.com/)
+ - [ES Lint](http://eslint.org/)
+
+•window.navigator.userAgent• returns the   
+Browser feature detection tools:
+ - [Modernizr](https://modernizr.com/docs)
+ - [Can I Use?](http://caniuse.com)
+
+•throw• halts execution, and can be used with or without the •new• operator and/or •Error()• constructor  
+If you •catch• an error, output it via •console.error()• or •console.warn()•  
+Error types:
+ - •RangeError• number is outside allowed range
+ - •ReferenceError• reference doesn't exist
+ - •SyntaxError•
+ - •TypeError•
+ - •URIError• URI encode/decode error
+ - •InternalError• JavaScript engine error (e.g., too much recursion)
+
+[Jest tutorial](https://www.valentinog.com/blog/jest/)  
+By default, Jest expects to find test files in a folder called •__tests__• in your project folder.  
+Jest executes files that end with •.test.js• or •.spec.js•  
+Jest config can be added to •package.json• as •"jest": { "collectCoverage": true },•
+    (example for table display of files)  
+[Jest](https://www.npmjs.com/package/jest) global methods:
+ - •describe()• for a group of tests
+ - •test()• is a test
+ - •expect()• chained with other methods to complete a test
+
+Methods chained after •expect()•:
+ - •toBe()•
+ - •not.toBe()•
+ - •equals()• compares an array
+
+
+
+
 ## To be continued...
 `;
 
       document.getElementById("content").innerHTML = marked(
         mdText
           .replaceAll("•", "`")
-          .replaceAll("►", "<span style='margin-left:2rem'></span>")
+          .replaceAll("►", "<span style='margin-left:7rem'></span>")
       );
     </script>
   </body>
