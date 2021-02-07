@@ -142,6 +142,8 @@ export default class List {
     addItemDiv.appendChild(addBtn);
 
     modalContent.appendChild(addItemDiv);
+
+    if ( ! this.items.length) document.getElementById('addItemInput').focus();
   }
 
   /**
@@ -179,16 +181,18 @@ export default class List {
    */
   addItem() {
     const addItemInput = document.getElementById('addItemInput');
-    this.items.push({
-      id: Date.now(),
-      content: addItemInput.value,
-      completed: false,
-    })
-    addItemInput.value = '';
-    closeModal();
-    this.renderEditableList();
-    document.getElementById('addItemInput').focus();
-    List.saveAllLists();
+    if (addItemInput.value) {
+      this.items.push({
+        id: Date.now(),
+        content: addItemInput.value,
+        completed: false,
+      })
+      addItemInput.value = '';
+      closeModal();
+      this.renderEditableList();
+      document.getElementById('addItemInput').focus();
+      List.saveAllLists();
+    }
   }
 
   /**

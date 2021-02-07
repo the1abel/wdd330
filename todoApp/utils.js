@@ -39,5 +39,6 @@ export function createModal(
  * CLOSE MODAL
  */
 export function closeModal() {
-  document.getElementById('modalBackground').remove();
+  const modalBackground = document.getElementById('modalBackground');
+  if (modalBackground) modalBackground.remove();
 }
