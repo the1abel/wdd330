@@ -6,9 +6,11 @@ header {
   align-items: center; /* vertical */
   padding-left: 1.5em;
   padding-right: 1.5em;
+  color: navy;
   background-color: lightblue;
   border-bottom: 1px solid lightgrey;
 }
+header i {color: navy}
 h1 {display: inline}
 
 #listsGallery {
@@ -28,11 +30,11 @@ h1 {display: inline}
   margin-top: 5rem;
 }
 
-#addItemInput {width: calc(100% - 34px)}
+#addItemInput {width: calc(100% - 40px)}
 
 /* Editable List ****/
 .itemsContainer {
-  min-height: 200px;
+  min-height: 300px;
 }
 
 .listItemDiv {
@@ -53,7 +55,7 @@ h1 {display: inline}
   grid-template-columns: 1fr auto auto;
   align-items: center; /* vertical */
 }
-.editableListHeader :first-child {margin-right: .5rem}
+.editableListHeader > :first-child {margin-right: .5rem}
 #deleteList,
 .editableListHeader #renameList {
   line-height: 2.45rem;
@@ -72,6 +74,30 @@ h1 {display: inline}
   transition: background-color .5s;
 }
 
+/* Editable List: Footer ****/
+.itemsContainerFooter {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center; /* vertical */
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  margin-bottom: .5rem;
+}
+.itemsContainerFooter > * {padding: .5rem}
+.totalActiveP {
+  display: inline-block;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+.filterContainer {border-radius: 4px; margin-right: 1.5px}
+.filterContainer:hover {background-color: #defff4}
+.filter {border: none; outline: none}
+.filter.current {
+  color: navy;
+  background-color: lightblue;
+  border-color: navy;
+}
+
 /* Editable & Static List ****/
 .listItemDiv :nth-child(2),
 .staticListDiv p  {
@@ -87,15 +113,30 @@ span.completed {
 
 /* Static List ****/
 .staticListDiv {
+  position: relative;
   border: 1px solid lightgrey;
   border-radius: 4px;
   min-width: 200px;
   max-width: min(400px, 100%);
   margin: 1rem;
+  cursor: pointer;
+  transition: all .5s;
 }
+.staticListDiv:hover {
+  background-color: #e6fcf4;
+  transform: perspective(500px) translateZ(15px);
+}
+.staticListDiv:hover header {background-color:lightskyblue}
 .staticListDiv header {
   justify-content: center;
+  color: navy;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: .07rem;
   height: 39px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+  transition: all .5s;
 }
+
+.hidden {display: none}

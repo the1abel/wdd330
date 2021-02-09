@@ -1,6 +1,6 @@
 import List from './List.js';
 
-List.initListGallery();
+List.initGallery();
 
 document.getElementById('createList').addEventListener('click', () => {
   List.createList();

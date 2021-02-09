@@ -3,7 +3,7 @@
  * @param {object} obj Named parameters include {modalContent, modalHeader, callbackOnClose}
  */
 export function createModal(
-    {modalContent='', modalHeader='', callbackOnClose=null}={}) {
+    { modalHeader='', modalContent='', callbackOnClose=null }={}) {
   const modal = `<div id="modalBackground">
                   <div class="modalFrame">
                     <div class="modalHeader">

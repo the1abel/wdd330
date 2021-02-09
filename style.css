@@ -104,7 +104,8 @@ code {
   border-top-right-radius: 4px;
   padding: 0 .5rem;
 }
-#closeModal:hover {
+#closeModal:hover,
+.warning:hover {
   color: white;
   background-color: lightcoral;
   cursor: pointer;
