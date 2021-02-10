@@ -33,22 +33,32 @@ h1 {display: inline}
 #addItemInput {width: calc(100% - 40px)}
 
 /* Editable List ****/
-.itemsContainer {
-  min-height: 300px;
-}
+.itemsContainer {min-height: 300px}
 
 .listItemDiv {
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
+  grid-template-columns: auto auto 1fr auto;
+  gap: .5rem;
+  align-items: center; /* vertical */
   border-radius: 4px;
 }
-.listItemDiv:hover {
-  background-color: #e9f9ff;
+.listItemDiv:hover {background-color: rgba(215, 246, 255, 0.7)}
+.listItemDiv.moving {
+  cursor: grabbing;
+  box-shadow: 0 0 5px grey;
+  background-color: rgba(215, 246, 255, 0.7);
 }
 
-.listItemDiv .btn {visibility: hidden}
-.listItemDiv:hover .btn {visibility: visible}
+.listItemDiv .fa-grip-horizontal {
+  color: lightgrey;
+  margin-left: .5rem;
+  cursor:grab;
+}
+
+.listItemDiv .btn,
+.listItemDiv .fa-grip-horizontal {visibility: hidden}
+.listItemDiv:hover .btn,
+.listItemDiv:hover .fa-grip-horizontal {visibility: visible}
 
 .editableListHeader {
   display: grid;
@@ -56,6 +66,7 @@ h1 {display: inline}
   align-items: center; /* vertical */
 }
 .editableListHeader > :first-child {margin-right: .5rem}
+
 #deleteList,
 .editableListHeader #renameList {
   line-height: 2.45rem;
@@ -99,12 +110,6 @@ h1 {display: inline}
 }
 
 /* Editable & Static List ****/
-.listItemDiv :nth-child(2),
-.staticListDiv p  {
-  padding-left: .5rem;
-  padding-right: .5rem;
-}
-
 p.completed,
 span.completed {
   color: lightgrey;
@@ -138,5 +143,7 @@ span.completed {
   border-top-right-radius: 4px;
   transition: all .5s;
 }
+
+.staticListDiv p  {padding-left: .5rem; padding-right: .5rem}
 
 .hidden {display: none}

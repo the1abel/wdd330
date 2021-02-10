@@ -115,6 +115,8 @@ code {
 #modalContent {
   min-width: 200px;
   padding: .5rem;
+  max-height: calc(100vh - 50px);
+  overflow-y:auto;
 }
 
 .clearfix::after {

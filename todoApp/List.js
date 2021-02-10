@@ -112,7 +112,7 @@ export default class List {
     const itemsContainer = document.createElement('div');
     itemsContainer.className = 'itemsContainer';
 
-    // change list item content/name (function)
+    // function: change list item content/name
     const changeContent = (event, item) => {
       const contentSpan = event.target;
       let newContentInputRemoved = false;
@@ -139,17 +139,94 @@ export default class List {
       newContentInput.focus();
     };
 
+    // function: grab list items to move them up and down (resort them)
+    const grabListItem = (event) => {
+      event.preventDefault(); // prevents text being highlighted as use moves mouse
+      const subjectListItem = event.target.closest('.listItemDiv');
+      subjectListItem.classList.add('moving');
+      let previousY = event.clientY;
+
+      // function: move list item
+      const moveListItem = (moveEvent) => {
+        const yDiff = moveEvent.clientY - previousY;
+        subjectListItem.style.transform = `translateY(${yDiff}px)`;
+
+        let index = parseInt(subjectListItem.dataset.index);
+        let subjectListItemTop = subjectListItem.getBoundingClientRect().top;
+        const p = subjectListItem.parentElement;
+        
+        if (index > 0 &&
+            subjectListItemTop < p.children[index - 1].getBoundingClientRect().top) {
+        /**
+         * move item up one space
+         */
+          // handle element visual movement (adjust for new position)
+          previousY = moveEvent.clientY;
+          subjectListItem.style.transform = 'translateY(0px)';
+          // swap nodes
+          const old = p.replaceChild(subjectListItem, p.children[index - 1]);
+          subjectListItem.insertAdjacentElement('afterEnd', old);
+          // swap dataset indices
+          old.dataset.index = index;
+          subjectListItem.dataset.index = index - 1;
+          // swap items in array
+          const holder = this.items[index];
+          this.items[index] = this.items[index - 1];
+          this.items[index - 1] = holder;
+
+        } else if (index < p.children.length -2 && // -2 due to footer & 0-based counting
+            subjectListItemTop > p.children[index + 1].getBoundingClientRect().top) {
+        /**
+         * move item down one space
+         **/
+          // handle element visual movement (adjust for new position)
+          previousY = moveEvent.clientY;
+          subjectListItem.style.transform = 'translateY(0px)';
+          // swap nodes
+          const old = p.replaceChild(subjectListItem, p.children[index + 1]);
+          subjectListItem.insertAdjacentElement('beforeBegin', old);
+          // swap dataset indices
+          old.dataset.index = index;
+          subjectListItem.dataset.index = index + 1;
+          // swap items in array
+          const holder = this.items[index];
+          this.items[index] = this.items[index + 1];
+          this.items[index + 1] = holder;
+        }
+      };
+
+      // function: release list item
+      const releaseListItem = (event) => {
+        subjectListItem.classList.remove('moving');
+        document.body.removeEventListener('mousemove', moveListItem);
+        document.body.removeEventListener('mouseup', releaseListItem);
+        this.renderEditableList();
+        List.saveAllLists();
+      };
+
+      document.body.addEventListener('mousemove', moveListItem);
+      document.body.addEventListener('mouseup', releaseListItem);
+    };      
+
     // create list items
-    for (const item of this.items) {
+    for (const [i, item] of this.items.entries()) {
       const listItemDiv = document.createElement('div');
-      listItemDiv.className = `listItemDiv
-          ${item.completed ? 'completed' : 'active'}
-          ${this.filter === 'active' && item.completed ? 'hidden' : ''}
+      listItemDiv.setAttribute('data-index', i);
+      listItemDiv.className = `listItemDiv\
+          ${item.completed ? 'completed' : 'active'}\
+          ${this.filter === 'active' && item.completed ? 'hidden' : ''}\
           ${this.filter === 'completed' && ! item.completed ? 'hidden' : ''}`;
+
+      // grab bars
+      const grabBars = document.createElement('i');
+      grabBars.className = 'fas fa-grip-horizontal';
+      grabBars.addEventListener('mousedown', grabListItem);
+      listItemDiv.appendChild(grabBars);
 
       // checkbox
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.className = 'completeCheckbox';
       checkbox.checked = item.completed;
       checkbox.addEventListener('click', (event) => {this.completeItem(event, item)});
       listItemDiv.appendChild(checkbox);
@@ -164,7 +241,7 @@ export default class List {
       // delete button
       const deleteBtn = document.createElement('button');
       deleteBtn.innerHTML = '<i class="far fa-trash-alt"></i>';
-      deleteBtn.className = 'btn';
+      deleteBtn.className = 'btn warning';
       deleteBtn.addEventListener('click', (event) => {this.deleteItem(event, item)});
       listItemDiv.appendChild(deleteBtn);
 
@@ -308,6 +385,7 @@ export default class List {
     const addItemInput = document.getElementById('addItemInput');
     if (addItemInput.value) {
       this.items.push({
+        index: this.items.length,
         id: Date.now(),
         content: addItemInput.value,
         completed: false,
