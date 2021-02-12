@@ -1,7 +1,7 @@
-import Model from './model.js';
+import Model from './Model.js';
 import { createModal, closeModal } from './utils.js';
 
-let lists = [];
+let lists = null;
 
 export default class List {
   constructor({listName = null, items = [], filter = 'all'}={}) {
@@ -14,8 +14,9 @@ export default class List {
    * INITIALIZE LIST GALLERY
    */
   static initGallery() {
+    lists = [];
     List.readAllLists();
-    if (lists.length) List.renderAllLists();
+    List.renderAllLists();
   }
 
   /**
@@ -73,7 +74,7 @@ export default class List {
       staticListDiv.appendChild(p);
     }
 
-    document.getElementById('listsGallery').appendChild(staticListDiv);
+    document.getElementById('main').appendChild(staticListDiv);
   }
 
   /**
@@ -352,10 +353,16 @@ export default class List {
    * RENDER ALL LISTS
    */
   static renderAllLists() {
-    const listsGallery = document.getElementById('listsGallery');
-    listsGallery.innerHTML = '';
-    for (const l of lists) {
-      l.renderStaticList();
+    const main = document.getElementById('main');
+
+    if (lists.length) {
+      main.innerHTML = '';
+      for (const l of lists) {
+        l.renderStaticList();
+      }
+    } else {
+      main.innerHTML =
+          '<p class="welcomeMsg">Click "Create a list" to get started!</p>';
     }
   }
 

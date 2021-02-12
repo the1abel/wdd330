@@ -11,9 +11,11 @@ header {
   border-bottom: 1px solid lightgrey;
 }
 header i {color: navy}
+#createList {visibility: hidden} /* changed by JS after login */
+#logout {visibility: hidden} /* changed by JS after login */
 h1 {display: inline}
 
-#listsGallery {
+#main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* horizontal */
@@ -24,7 +26,7 @@ h1 {display: inline}
   overflow: auto;
 }
 
-#welcomeMsg {
+.welcomeMsg {
   color: darkgrey;
   font-size: 1.5rem;
   margin-top: 5rem;
@@ -116,7 +118,8 @@ span.completed {
   text-decoration: line-through;
 }
 
-/* Static List ****/
+/* Login & Static List ****/
+.loginDiv,
 .staticListDiv {
   position: relative;
   border: 1px solid lightgrey;
@@ -132,6 +135,8 @@ span.completed {
   transform: perspective(500px) translateZ(15px);
 }
 .staticListDiv:hover header {background-color:lightskyblue}
+
+.loginDiv header,
 .staticListDiv header {
   justify-content: center;
   color: navy;
@@ -143,6 +148,18 @@ span.completed {
   border-top-right-radius: 4px;
   transition: all .5s;
 }
+
+.loginDiv label,
+.loginDiv div {display: block; margin: 1rem}
+
+.loginDiv label {
+  display: grid;
+  align-items: center;
+  gap: .5rem;
+  grid-template-columns: .5fr 1fr;
+}
+
+.loginDiv .right {text-align: right}
 
 .staticListDiv p  {padding-left: .5rem; padding-right: .5rem}
 

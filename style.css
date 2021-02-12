@@ -64,6 +64,14 @@ code {
   font-family: "Consolas", monospace;
 }
 
+.error {
+  color: red;
+  border: 1px solid red;
+  border-radius: 4px;
+  background-color:rgb(255, 241, 243);
+  padding: .5rem;
+}
+
 .framed {
   border: 1px solid grey;
   border-radius: 7px;
