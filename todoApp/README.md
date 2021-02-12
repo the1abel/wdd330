@@ -1,5 +1,7 @@
 # Welcome to Abel's "Lists Galore" To-do web app
 
+Check out [the app](./dist/index.html).
+
 ## The following features exceed the assignment's requirements:
  - Multiple users
  - User authentication (with passwords stored as one-way hash)
@@ -9,6 +11,7 @@
  - Enter and Esc key listeners throughout application for good UX
  - ES6 classes & modules
  - Use of Webpack (bundle & minify JS) and Babel (transpile JS to ES5)
+ - Encrypt into & decrypt from `localStorage`
 
 ## The following are the [assignment instructions](https://byui-cit.github.io/cit261/resources/todo.html):
  1. Description: Build a simple web app to manage a ToDo list. It should allow the creation of new tasks, the viewing of tasks, a process to mark tasks as complete, ability to remove tasks, and the ability to filter by complete/not complete.

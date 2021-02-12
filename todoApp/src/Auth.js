@@ -5,7 +5,7 @@ export default class Auth {
   constructor() {
     document.getElementById('main').innerHTML = logInHtml;
     document.getElementById('loginBtn').addEventListener('click', this.logInUser);
-    document.getElementById('registerBtn').addEventListener('click', this.registerNewUserName);
+    document.getElementById('registerBtn').addEventListener('click', this.registerNewUser);
     document.getElementById('logout').addEventListener('click', this.logOutUser);
     document.body.addEventListener('keyup', (event) => {
       if (event.key === 'Enter' &&
@@ -24,7 +24,7 @@ export default class Auth {
   /**
    * REGISTER NEW USER
    */
-  registerNewUserName() {
+  registerNewUser() {
     const username = document.getElementById('registerUsername').value;
     const password1 = document.getElementById('registerPassword1').value;
     const password2 = document.getElementById('registerPassword2').value;
@@ -49,7 +49,7 @@ export default class Auth {
 
     } else {
     // valid credentials
-      Model.registerNewUserName(username, password1);
+      Model.registerNewUser(username, password1);
       loadListsApp();
 
     }
