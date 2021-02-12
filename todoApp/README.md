@@ -1,6 +1,6 @@
 # Welcome to Abel's "Lists Galore" To-do web app
 
-Check out [the app](./dist/index.html).
+Check out [the app](https://the1abel.github.io/wdd330/todoApp/dist/).
 
 ## The following features exceed the assignment's requirements:
  - Multiple users
@@ -28,6 +28,11 @@ Check out [the app](./dist/index.html).
     2. toDoList = [toDo];
  5. Initial Module list: ToDos.js, localStorage helpers (ls.js), utilities.js
  6. Colors/Typography/specific Element styling: Student to determine
+
+## Code Style Considerations
+With as many opinions about coding style as there are software developers, in the absence of any guidance from leadership, for this project I chose to favor limiting scope, fewer classes, and fewer top-level methods in each class.
+This is admittedly ripe for refactor, as the `List` class combines View and Controller code, as well as code applicable to a "set of Lists" and each "child List".
+Also, `List#renderEditableList()` (`List.js` lines 94-350, including functions nested to limit scope) generates all elements and attributes programmatically, instead of writing HTML as a string for the browser to parse (via `Element#innerHTML`), which results in better performance (albeit irrelevant for most client devices).
 
 ## Note:
 This class and assignment focus on front end web development. As such, this utilizes `localStorage` as the "database". Meanwhile, the `Model.js` ES6 module is designed and implemented in such a way that the methods could easily be refactored to reach out to a back end web service with 6 simple endpoints (validateUniqueUserName, registerNewUser, logInUser, logOutUser, readAllLists, saveAllLists).
