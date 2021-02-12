@@ -1,16 +1,16 @@
 # Welcome to Abel's "Lists Galore" To-do web app
 
-Check out [the app](https://the1abel.github.io/wdd330/todoApp/dist/).
+Experience [Lists Galore](https://the1abel.github.io/wdd330/todoApp/dist/) in action for yourself!
 
 ## The following features exceed the assignment's requirements:
  - Multiple users
- - User authentication (with passwords stored as one-way hash)
+ - User authentication (with passwords stored & validated via one-way hash)
  - Multiple lists for each user
  - Drag-and-drop to sort items within a list
  - Filter setting retained in "database" for each individual list
  - Enter and Esc key listeners throughout application for good UX
  - ES6 classes & modules
- - Use of Webpack (bundle & minify JS) and Babel (transpile JS to ES5)
+ - Webpack (bundle & minify JS) and Babel (transpile JS to ES5)
  - Encrypt into & decrypt from `localStorage`
 
 ## The following are the [assignment instructions](https://byui-cit.github.io/cit261/resources/todo.html):
@@ -35,4 +35,4 @@ This is admittedly ripe for refactor, as the `List` class combines View and Cont
 Also, `List#renderEditableList()` (`List.js` lines 94-350, including functions nested to limit scope) generates all elements and attributes programmatically, instead of writing HTML as a string for the browser to parse (via `Element#innerHTML`), which results in better performance (albeit irrelevant for most client devices).
 
 ## Note:
-This class and assignment focus on front end web development. As such, this utilizes `localStorage` as the "database". Meanwhile, the `Model.js` ES6 module is designed and implemented in such a way that the methods could easily be refactored to reach out to a back end web service with 6 simple endpoints (validateUniqueUserName, registerNewUser, logInUser, logOutUser, readAllLists, saveAllLists).
+This assignment is focused on front end web development.  As such, this app utilizes `localStorage` as the "database".  Meanwhile, the `Model.js` ES6 module is designed and implemented in such a way that the methods could easily be refactored to reach out to a back end web service with 6 simple endpoints (validateUniqueUserName, registerNewUser, logInUser, logOutUser, readAllLists, saveAllLists).  NoSQL would be ideal for these transactions.
