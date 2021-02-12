@@ -392,7 +392,6 @@ export default class List {
     const addItemInput = document.getElementById('addItemInput');
     if (addItemInput.value) {
       this.items.push({
-        index: this.items.length,
         id: Date.now(),
         content: addItemInput.value,
         completed: false,
@@ -483,7 +482,7 @@ export default class List {
     document.getElementById('cancelDelete')
       .addEventListener('click', () => {this.renderEditableList()});
 
-    // confirm delete
+    // confirm delete (once user confirms they do indeed want to delete the list item)
     document.getElementById('confirmDelete').addEventListener('click', () => {
       const index = lists.indexOf(this);
       lists.splice(index, 1);

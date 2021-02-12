@@ -3,9 +3,9 @@ import List from './List.js';
 
 export default class Auth {
   constructor() {
-    document.getElementById('main').innerHTML = this.logInHtml;
+    document.getElementById('main').innerHTML = logInHtml;
     document.getElementById('loginBtn').addEventListener('click', this.logInUser);
-    document.getElementById('registerBtn').addEventListener('click', this.registerNewUser);
+    document.getElementById('registerBtn').addEventListener('click', this.registerNewUserName);
     document.getElementById('logout').addEventListener('click', this.logOutUser);
     document.body.addEventListener('keyup', (event) => {
       if (event.key === 'Enter' &&
@@ -24,7 +24,7 @@ export default class Auth {
   /**
    * REGISTER NEW USER
    */
-  registerNewUser() {
+  registerNewUserName() {
     const username = document.getElementById('registerUsername').value;
     const password1 = document.getElementById('registerPassword1').value;
     const password2 = document.getElementById('registerPassword2').value;
@@ -49,7 +49,7 @@ export default class Auth {
 
     } else {
     // valid credentials
-      Model.registerNewUser(username, password1);
+      Model.registerNewUserName(username, password1);
       loadListsApp();
 
     }
@@ -82,36 +82,6 @@ export default class Auth {
   logOutUser() {
     document.location.href = document.location.href;
   }
-
-  /** LOG IN HTML */
-  logInHtml =
-        `<div class="loginDiv">
-          <header>Log In</header>
-          <label for="loginUsername">User Name
-            <input type="text" name="loginUsername" id="loginUsername">
-          </label>
-          <label for="loginPassword">Password
-            <input type="password" name="loginPassword" id="loginPassword">
-          </label>
-          <div class="right"><button id="loginBtn" class="btn">Go</button></div>
-          <div id="loginError"></div>
-        </div>
-
-        <!-- Register -->
-        <div class="loginDiv">
-          <header>Register New User</header>
-          <label for="registerUsername">User Name
-            <input type="text" name="registerUsername" id="registerUsername">
-          </label>
-          <label for="registerPassword1">Password
-            <input type="password" name="registerPassword1" id="registerPassword1">
-          </label>
-          <label for="registerPassword2">Repeat Password
-            <input type="password" name="registerPassword2" id="registerPassword2">
-          </label>
-          <div class="right"><button id="registerBtn" class="btn">Go</button></div>
-          <div id="registerError"></div>
-        </div>`;
 }
 
 function loadListsApp() {
@@ -127,3 +97,33 @@ function loadListsApp() {
     List.showAllListsInConsole();
   });
 }
+
+/** LOG IN HTML */
+const logInHtml =
+    `<div class="loginDiv">
+      <header>Log In</header>
+      <label for="loginUsername">User Name
+        <input type="text" name="loginUsername" id="loginUsername">
+      </label>
+      <label for="loginPassword">Password
+        <input type="password" name="loginPassword" id="loginPassword">
+      </label>
+      <div class="right"><button id="loginBtn" class="btn">Go</button></div>
+      <div id="loginError"></div>
+    </div>
+
+    <!-- Register -->
+    <div class="loginDiv">
+      <header>Register New User</header>
+      <label for="registerUsername">User Name
+        <input type="text" name="registerUsername" id="registerUsername">
+      </label>
+      <label for="registerPassword1">Password
+        <input type="password" name="registerPassword1" id="registerPassword1">
+      </label>
+      <label for="registerPassword2">Repeat Password
+        <input type="password" name="registerPassword2" id="registerPassword2">
+      </label>
+      <div class="right"><button id="registerBtn" class="btn">Go</button></div>
+      <div id="registerError"></div>
+    </div>`;
