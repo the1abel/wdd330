@@ -13,7 +13,7 @@ Experience [Lists Galore](https://the1abel.github.io/wdd330/todoApp/dist/) in ac
  - Webpack (bundle & minify JS) and Babel (transpile JS to ES5)
  - Encrypt into & decrypt from `localStorage`
 
-## The following are the [assignment instructions](https://byui-cit.github.io/cit261/resources/todo.html):
+## Following are the [assignment instructions](https://byui-cit.github.io/cit261/resources/todo.html):
  1. Description: Build a simple web app to manage a ToDo list. It should allow the creation of new tasks, the viewing of tasks, a process to mark tasks as complete, ability to remove tasks, and the ability to filter by complete/not complete.
  2. Todo app wireframe  
     ![](https://byui-cit.github.io/cit261/images/todo-wireframe.png)  
@@ -29,7 +29,7 @@ Experience [Lists Galore](https://the1abel.github.io/wdd330/todoApp/dist/) in ac
  5. Initial Module list: ToDos.js, localStorage helpers (ls.js), utilities.js
  6. Colors/Typography/specific Element styling: Student to determine
 
-## Code Style Considerations
+## Code Style Considerations:
 With as many opinions about coding style as there are software developers, in the absence of any guidance from leadership, for this project I chose to favor limiting scope, fewer classes, and fewer top-level methods in each class.
 This is admittedly ripe for refactor, as the `List` class combines View and Controller code, as well as code applicable to a "set of Lists" and each "child List".
 Also, `List#renderEditableList()` (`List.js` lines 94-350, including functions nested to limit scope) generates all elements and attributes programmatically, instead of writing HTML as a string for the browser to parse (via `Element#innerHTML`), which results in better performance (albeit irrelevant for most client devices).
