@@ -24,15 +24,15 @@ export function createModal(
          (event.target === document.getElementById('modalBackground') ||
           event.target === document.getElementById('closeModal'))) ||
         (event.key && event.key === 'Escape')) {
+      document.body.onkeyup = null;
       closeModal();
       if (callbackOnClose) callbackOnClose();
-      document.body.removeEventListener('keyup', closeWithCallback);
     }
   }
   
   document.getElementById('closeModal').addEventListener('click', closeWithCallback);
   document.getElementById('modalBackground').addEventListener('click', closeWithCallback);
-  document.body.addEventListener('keyup', closeWithCallback);
+  document.body.onkeyup = closeWithCallback; // ensures only one listener is added to body
 }
 
 /**

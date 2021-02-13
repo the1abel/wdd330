@@ -5,8 +5,9 @@ Experience [Lists Galore](https://the1abel.github.io/wdd330/todoApp/dist/) in ac
 ## The following features exceed the assignment's requirements:
  - Multiple users
  - User authentication (with passwords stored & validated via one-way hash)
- - Multiple lists for each user
+ - Multiple lists for each user, and change list names
  - Drag-and-drop to sort items within a list
+ - Change list item content
  - Filter setting retained in "database" for each individual list
  - Enter and Esc key listeners throughout application for good UX
  - ES6 classes & modules
