@@ -110,7 +110,7 @@ view.render(view.hiScore, game.hiScore());
 fetch(url)
   .then(res => res.json())
   .then(quiz => {
-    console.log(quiz.questions);
+    console.log('quiz questions:', quiz.questions);
     view.start.addEventListener('click', () => game.start(quiz.questions), false);
     view.response.addEventListener('click', (event) => game.check(event), false);
   });
@@ -118,3 +118,32 @@ fetch(url)
 /*
  * Chapter 13 Experimenting
  */
+document.forms.testForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  formData.append('prop', 'val');
+  // FormData cannot be output via simple console.log()
+  for (const key of formData.entries()) {
+    console.log(key[0] + ', ' + key[1]);
+  }
+
+  // convert to URL-encoded body for use with .fetch() instead of XMLHttpRequest
+  const data = new URLSearchParams();
+  for (const pair of formData) {
+      data.append(pair[0], pair[1]);;
+  }
+
+  const url = 'https://arw-cse341-project2.herokuapp.com/testUrlEncoded';
+  fetch(url, {
+    method: 'POST',
+    // mode: 'cors', // isn't necessary to specify
+    headers: {
+      // this is the format being sent, but the browser has to be allowed to add this header
+      // 'Content-Type': 'multipart/form-data',
+    },
+    body: data,
+  })
+    .then(response => response.json())
+    .then(json => console.log('response:', json))
+    .catch(error => console.error(error));
+})

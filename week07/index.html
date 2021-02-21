@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week 7</title>
   <link rel="stylesheet" href="../style.css">
+  <style>
+    label {display: block; margin-top: .5rem}
+    button {margin-top: 1rem}
+  </style>
 </head>
 <body>
   <h1>Week 7</h1>
@@ -34,7 +38,33 @@
   <!-- Chapter 13 -->
   <section id="ch13" class="framed">
     <h2>Chapter 13: Ajax</h2>
-    <p>Test code output is visible in the console.</p>
+    <p>The Chapter 11 experimenting code reflected in green above uses <code>fetch()</code>.
+        <br>
+        Yes, the async/await is unnecessary (due to promise used by <code>fetch()</code>,
+        but an HTTP request was the first asynchronous client-side action I thought of
+        to test async/await in the browser.</p>
+    <form name="testForm" id="testForm">
+      <label for="word">Word
+        <input type="text" name="word" id="word" value="doe">
+      </label>
+      <label for="color">Color
+        <input type="text" name="color" id="color" value="red">
+      </label>
+      <label for="go">
+        <input type="radio" name="instruction" id="go">
+        Go
+      </label>
+      <label for="hurryUp">
+        <input type="radio" name="instruction" id="hurryUp" checked>
+        Hurry Up
+      </label>
+      <label for="stop">
+        <input type="radio" name="instruction" id="stop">
+        Stop
+      </label>
+
+      <button>Click me, then look at the output in console</button>
+    </form>
   </section>
 
   <script src="main.js" type="module"></script>

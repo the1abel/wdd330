@@ -732,6 +732,103 @@ A **closure** is a variable that is not garbage collected when it goes out of sc
 Therefore, it must have (an) argument(s) and return a value.
 
 ### Chapter 13: Ajax
+#### Fetch API
+[Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and
+[Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+•••
+fetch('https://example.com/data'[, requestInitObject])
+  .then((response) => // code that handles the response )
+  .catch( // code that runs if the server returns an error )
+•••
+[Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) properties:
+ - •Response.status•
+ - •Response.statusText• (e.g., "OK" for 200)
+ - •Response.ok• boolean indicating •.status• is 200-299
+ - •Response.headers•
+ - •Response.redirected• boolean
+ - •Response.trailers• additional header fields at end of chunked msgs with metadata
+ - •Response.type• ("basic", "cors" granted, "error" or "opaque" CORS not granted)
+ - •Response.url•
+ - •Response.useFinalURL• boolean indicating if this is the final URL of the response
+
+•Response• implements •Body•, so it also has the following methods available to it:
+ - •.arrayBuffer()•
+ - •.blob()•
+ - •.formData()•
+ - •.json()•
+ - •.text()•
+
+Both •Request• and •Response• may contain body data.  
+A body is an instance of any of the following types:
+ - •ArrayBuffer•
+ - •ArrayBufferView• (Uint8Array and friends)
+ - •Blob• (Binary Large OBject === a file)
+ - •string•
+ - •URLSearchParams•
+ - •FormData•
+
+The Body mixin defines the following methods to extract a body (implemented by both Request and Response). These all return a promise that is eventually resolved with the actual content.
+ - •arrayBuffer()•
+ - •blob()•
+ - •json()•
+ - •text()•
+ - •formData()•
+
+[Request](https://developer.mozilla.org/en-US/docs/Web/API/Request) initialization object
+  (•fetch()•'s 2nd parameter) [properties](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#parameters):
+ - method
+ - headers: [Headers object](https://developer.mozilla.org/en-US/docs/Web/API/Headers)
+    or object literal with
+    { [name:value pairs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) }
+ - body: Blob, BufferSource, FormData, URLSearchParams, USVString, or ReadableStream object
+ - mode: cors, no-cors, same-origin
+ - credentials: omit, same-origin, include
+ - redirect
+ - referrer
+ - referrerPolicy
+ - integrity
+ - keepalive
+ - signal
+
+#### FormData
+FormData is designed for use with •XMLHttpRequest•, but can be converted to
+  •URLSearchParams• for use with •fetch()•  
+Compile the form data:
+•••
+const formData = new FormData(document.forms.myForm);
+•••  
+Add a key-value pair manually:
+•••  
+formData.append('prop', 'val');
+•••  
+Display FormData in console (cannot be output via simple console.log()):
+•••
+for (const key of formData.entries()) {
+  console.log(key[0] + ', ' + key[1]);
+}
+•••
+Convert to URL-encoded body for use with .fetch() instead of XMLHttpRequest:
+•••
+const urlEncodedData = new URLSearchParams();
+for (const pair of formData) {
+  urlEncodedData.append(pair[0], pair[1]);;
+}
+•••
+Now, it can be used with •fetch()•:
+•••
+fetch('https://arw-cse341-project2.herokuapp.com/testUrlEncoded', {
+  method: 'POST',
+  // mode: 'cors', // isn't necessary to specify
+  headers: {
+    // this is the format being sent, but the browser has to set this header
+    // 'Content-Type': 'multipart/form-data',
+  },
+  body: urlEncodedData,
+})
+  .then(response => response.json())
+  .then(json => console.log('response:', json))
+  .catch(error => console.error(error));
+•••
 
 
 
