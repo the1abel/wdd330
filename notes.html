@@ -6,11 +6,26 @@
     <title>Abel's Notes</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-      body, html {color: white; background-color: black}
-      th {background-color: rgb(49, 53, 55)}
-      strong {color: orangered}
-      p, ul, ol, table {margin-left: 3em}
-      pre {margin-left: 7em}
+      body,
+      html {
+        color: white;
+        background-color: black;
+      }
+      th {
+        background-color: rgb(49, 53, 55);
+      }
+      strong {
+        color: orangered;
+      }
+      p,
+      ul,
+      ol,
+      table {
+        margin-left: 3em;
+      }
+      pre {
+        margin-left: 7em;
+      }
     </style>
   </head>
   <body style="padding: 1rem">
@@ -365,6 +380,8 @@ Touch sequence: •touchstart•, •touchmove•, •touchenter•, •touchlea
 •TouchEvent.identifier• uniquely identifies the event  
 
 •Element#removeEventListener(eventType, namedFunction)• doesn't work for anonymous functions
+•document.body.onkeyup = ...• ensures only a single keyup listener is added
+•document.body.onkeyup = null;• removes onkeyup listener
 
 •event.screenX• screen (top-left of Primary monitor)  
 •event.clientX• client ("usually" browser window, BUT is same as screen for Chrome & Chromium Edge on Windows)  
@@ -600,6 +617,122 @@ Methods chained after •expect()•:
  - •toBe()•
  - •not.toBe()•
  - •equals()• compares an array
+
+
+
+Week 7
+----------------------------------------
+### Chapter 11: Further Functions
+Properties can be added to functions because they are objects.  
+Memoization is leveraging this characteristic by adding a property to the function, which
+  property is an object, into which calculated values can be stored as properties.  
+IIFE (Immediately Invoked Function Expression) requires parens around the function definition:
+  •(function() {console.log('invoked upon definition')})();•  
+Because a function's symbol (aka variable name/pointer) is available within itself, it can
+  call itself recursively or redefine itself (which discards any properties previously set).  
+When a variable is set to a function, an actual copy is made (not just a pointer, as is 
+  the case for regular objects)  
+"Init-time Branching" refers to a function that redefines itself the first time it is called
+  based on some environment condition (e.g., browser type) so that it doesn't have to
+  re-check that environment condition every time it is called.  
+When the JavaScript event loop places an asynchronous function at the top of the call stack
+  (to await its return value), the JavaScript event loop completes the "current execution
+  stack" (the rest of the current function/script) before "re-looping" to handle
+  the asynchronous return value.  This is why the callback passed into setTimeout is
+  handled last even with a wait time of 0 milliseconds.  
+
+#### Promises
+Promises that are 'pending' are 'unsettled'.  
+Once completed, they're 'settled' as either
+  'resolved' (completed successfully) or 'rejected' (didn't work as expected/threw an error).
+•••
+function myPromise(param1) {
+  return new Promise( (resolve, reject) => {
+    // initialization code goes here
+    if (successCondition) {
+      resolve(value);
+    } else {
+      reject(error);
+    }
+})};
+•••
+Once a promise is settled, a •.then()• method may be called, which accepts two callbacks
+  (one for each promise outcome: resolved or rejected)
+  as arguments (each of which receives the value returned by the promise):
+•••
+myPromise('something')
+  .then(
+    (result) => console.log('resolved :)'),
+    (result) => console.log('rejected :(')
+  );
+•••
+The second argument can be substituted with the •.catch()• method (may be desirable when 
+  •.then()• methods are chained):
+•••
+myPromise('something else')
+  .then((result) => console.log('resolved :)'))
+  .then((result) => console.log('resolved again :)'))
+  .catch((result) => console.log('rejected :('));
+•••
+
+#### Async/Await
+Added by ES2017.  
+•await• splits the lower half of the function into a callback.
+•••
+async function myFunc() {
+  try {
+    // do something
+    const returnedVal = await doSomeIO();
+    // do something else
+  } catch (error) {
+    console.error(error);
+  }
+}
+•••
+
+#### Generators
+Generator functions produce iterators that maintain the state of a value.
+•••
+function* fibonacci(a, b) {
+  let [prev, current] = [a, b];
+  while(true) {
+    [prev, current] = [current, prev + current];
+    yield current;
+  }
+}
+const sequence = fibonacci(1, 1);
+sequence.next(); // {value: 2, done: false}
+sequence.next(); // {value: 3, done: false}
+sequence.next(); // {value: 5, done: false}
+for (const n of sequence) {
+  if (n > 10) break;
+  console.log(n); // 8, 13, 21
+}
+•••
+
+Programming paradigms supported by JavaScript:
+ - Procedural programming
+ - Functional programming
+ - Object oriented programming
+
+A higher order function receives a function as an argument and/or returns a function.  
+A higher order function can return a more specific function based on arguments it receives.  
+When the returned function still needs additional arguments to be complete, it is called
+  **currying** (after Haskell Curry).  
+A **closure** is a variable that is not garbage collected when it goes out of scope
+  because another variable points to it that is still in scope.  This happens either when
+  an outer function returns an inner function/object/array or when a function/object/array
+  was passed into a function (as an argument) by reference (not by copy).  
+
+  A **pure function**:
+ 1. Returns a value that only depends on the arguments received
+ 2. Has no side-effects (doesn’t change any values or data elsewhere in the program)
+ 3. Referential transparency (return value is always the same unless arguments differ)
+
+Therefore, it must have (an) argument(s) and return a value.
+
+### Chapter 13: Ajax
+
 
 
 
