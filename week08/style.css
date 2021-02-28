@@ -106,7 +106,7 @@
 .bike:after {
   content: '';
   display: block;
-  background-image: url("/week08/bike_sprite.jpg");
+  background-image: url("bike_sprite.jpg");
   height: 92px;
   width: 90px;
   margin: auto;
