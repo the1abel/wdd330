@@ -6,6 +6,7 @@ const projectsObj = {
   "Week 05: Testing and Debugging": "week05",
   "TODO App": "todoApp/dist",
   "Week 07: Further Functions, Ajax": "week07",
+  "Week 08: Transformations, Transitions, Canvas, SVG, and Drag and Drop": "week08",
 };
 
 const projectsList = document.getElementById("projectsList");

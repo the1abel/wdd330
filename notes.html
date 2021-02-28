@@ -398,7 +398,7 @@ Week 4
 •<button>• (without a type) and •<input type="image">• will act as a submit button by default  
 Clicking an •<input type="image">• submits the form with URL query parameters of •x• and •y•
     (coordinates inside the image where clicked)  
-•form.action• can be set to change the destination for a form submission
+•form.action• can be set via JS to change the destination for a form submission
 
 A very elegant way to get all of a form's data (to then handle via JS)
     ([source](https://www.learnwithjason.dev/blog/get-form-values-as-json/)),
@@ -731,6 +731,7 @@ A **closure** is a variable that is not garbage collected when it goes out of sc
 
 Therefore, it must have (an) argument(s) and return a value.
 
+
 ### Chapter 13: Ajax
 #### Fetch API
 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and
@@ -807,12 +808,18 @@ for (const key of formData.entries()) {
   console.log(key[0] + ', ' + key[1]);
 }
 •••
-Convert to URL-encoded body for use with .fetch() instead of XMLHttpRequest:
+Convert to URL-encoded form data for use with .fetch() instead of XMLHttpRequest
+  (CAUTION: does not capture multi-select values (such as checkboxes)):
 •••
 const urlEncodedData = new URLSearchParams();
 for (const pair of formData) {
-  urlEncodedData.append(pair[0], pair[1]);;
+  urlEncodedData.append(pair[0], pair[1]);
 }
+•••
+Alternatively (better), convert to JSON ('Content-Type': 'application/json'):
+•••
+const values = Object.fromEntries(data.entries()); // only works on very, very new browsers
+values.topics = data.getAll("topics"); // get multi-select values (such as checkboxes)
 •••
 Now, it can be used with •fetch()•:
 •••
@@ -820,15 +827,52 @@ fetch('https://arw-cse341-project2.herokuapp.com/testUrlEncoded', {
   method: 'POST',
   // mode: 'cors', // isn't necessary to specify
   headers: {
-    // this is the format being sent, but the browser has to set this header
-    // 'Content-Type': 'multipart/form-data',
+    // this is the format being sent, but the browser has to set this header if URL-encoded
+    // 'Content-Type': 'multipart/form-data', // or 'application/json'
   },
-  body: urlEncodedData,
+  body: urlEncodedData, // or JSON.stringify(values)
 })
   .then(response => response.json())
   .then(json => console.log('response:', json))
   .catch(error => console.error(error));
 •••
+
+
+
+Week 8
+----------------------------------------
+### Chapter 8: Transforms and Transitions
+#### transform:
+•position: relative• is against its current position or against a parent or other ancestor  
+•transform: translate()• is only relative to its current position  
+•transform:• doesn't work on •inline• elements  
+•transform:• methods
+  (**order matters!** •rotate()• then •translate()• will translate on the rotated axis):
+ - •translate(x, y)• / •translateX(n)• / •translateY(n)•
+ - •scale(x, y)• / •scaleX(n)• / •scaleY(n)•
+ - •rotate(Xdeg, Ydeg, Zdeg)• / •rotateX(10deg)• / •rotateY(10deg)• / •rotateZ(10deg)•
+    (**Z** is most visible)
+ - •skew(Xdeg, Ydeg)• / •skewX(10deg)• / •skewY(10deg)•
+
+•transform-origin: x y;• (px/em/rem/% from: left, top)/ •transform-origin: top center;•(using words)  
+
+#### transition:
+•visibility:• will NOT transition gradually (because there is no "midpoint" of visibility).  
+►Use •opacity:• instead **!!!**  
+•transition:• is shorthand for •transition-property:•, •transition-duration:•,
+  •transition-timing-function:•, and •transition-delay:•  
+Multiple transition (sets of instructions) can be comma-separated after •transition:•  
+Negative time delays will start immediately in the position that is •n• seconds thru thru
+  the transition.  
+
+#### animation:
+•animation:• is shorthand for •animation-name:•, •animation-duration:•,
+  •animation-timing-function:•, •animation-delay:•, •animation-iteration-count:•,
+  •animation-direction:•, •animation-fill-mode:•, and •animation-play-state:•  
+•animation-iteration-count: infinite;• repeats animation  
+
+
+### Chapter 12: Canvas, SVG, and Drag and Drop
 
 
 

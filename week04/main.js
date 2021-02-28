@@ -15,7 +15,7 @@ document.forms.test8.addEventListener('submit', handleSubmit);
 function handleSubmit(event) {
   event.preventDefault();
   const data = new FormData(event.target);
-  const values = Object.fromEntries(data.entries());
+  const values = Object.fromEntries(data.entries()); // only works on very, very new browsers
   values.topics = data.getAll("topics"); // get multi-select values (such as checkboxes)
   values.powers = data.getAll("powers");
   console.log(values);

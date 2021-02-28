@@ -1,0 +1,118 @@
+.box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 1px solid blue;
+  background-color: rgba(0, 0, 255, .25);
+  width: 100px;
+  height: 100px;
+  transition: all 2s ease;
+}
+
+.box.a {
+  transform: rotateZ(45deg);
+}
+.box.b {
+  transform: translateY(50px) rotateZ(45deg) skew(-15deg);
+  transform-origin: top center;
+}
+.box.c {
+  transform: skewX(30deg);
+  transition-delay: 2s;
+}
+.box.d.hover {
+  transform: rotateZ(360deg);
+  border-radius: 50%;
+}
+.box.e.hover {
+  /* visibility: hidden; --this will make it permanently disappear */
+  opacity: 0;
+  border: initial;
+  background-color: initial;
+}
+
+.box.f {
+  animation: roll 7s infinite ease-in-out;
+}
+
+@keyframes roll {
+  15% {
+    transform: translateX(0px) rotateZ(0deg);
+    border-radius: 0;
+    border: 1px solid blue;
+    background-color: rgba(0, 0, 255, .25);
+   }
+  40% {
+    transform: translateX(200px) rotateZ(360deg);
+    border-radius: 50%;
+    background-color: rgba(0, 255, 0, .25);
+    border-color: lime;
+  }
+  60% {
+    transform: translateX(200px) rotateZ(360deg);
+    border-radius: 50%;
+    background-color: rgba(0, 255, 0, .25);
+    border-color: lime;
+  }
+  85% {
+    transform: translateX(0px) rotateZ(0deg);
+    border-radius: 0;
+    border: 1px solid blue;
+    background-color: rgba(0, 0, 255, .25);
+  }
+}
+
+.box.g {
+  border-radius: 50%;
+  opacity: 25%;
+  animation: bounce 10s infinite linear;
+}
+
+@keyframes bounce {
+  0% {transform: translate(0, 0); border-radius: 50%; opacity: 25%}
+  10% {transform: translate(100px, -100px)}
+  20% {transform: translate(200px, 0)}
+  30% {transform: translate(300px, -100px)}
+  40% {transform: translate(400px, 0)}
+  50% {transform: translate(500px, -100px)}
+  60% {transform: translate(400px, 0)}
+  70% {transform: translate(300px, -100px)}
+  80% {transform: translate(200px, 0)}
+  90% {transform: translate(100px, -100px)}
+  100% {transform: translate(0, 0)}
+}
+
+.box.h {
+  animation: slide 5s forwards;
+}
+
+@keyframes slide {
+  to {transform: translateX(500px)}
+}
+
+/* EXAMPLE FROM BOOK */
+.bike {color: red; font-weight: 900; font-size: 1.5rem}
+/* animate the bicycle pedals using an animated sprite */
+@keyframes bike {
+  0% {background-position: 0 0}
+  100% {background-position: -360px 0}
+}
+/* move the bicycle across the page using translated transform functions */
+@keyframes move {
+  0% {transform: translateX(-100px)}
+  100% {transform: translateX(100px)}
+}
+.bike:after {
+  content: '';
+  display: block;
+  background-image: url("/week08/bike_sprite.jpg");
+  height: 92px;
+  width: 90px;
+  margin: auto;
+  animation:
+    0.4s steps(4, end) infinite 50ms bike,
+    8s linear infinite 50ms move;
+  animation-play-state: paused; /* paused unless hovering */
+}
+.bike:hover:after {animation-play-state: running} /* hovering changes the play-state */
