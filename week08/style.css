@@ -1,3 +1,6 @@
+/*
+ * CHAPTER 8: Transformations and Transitions
+ */
 .box {
   display: inline-flex;
   align-items: center;
@@ -36,7 +39,7 @@
   animation: roll 7s infinite ease-in-out;
 }
 
-@keyframes roll {
+@keyframes rollasdf {
   15% {
     transform: translateX(0px) rotateZ(0deg);
     border-radius: 0;
@@ -69,7 +72,7 @@
   animation: bounce 10s infinite linear;
 }
 
-@keyframes bounce {
+@keyframes bounceasdf {
   0% {transform: translate(0, 0); border-radius: 50%; opacity: 25%}
   10% {transform: translate(100px, -100px)}
   20% {transform: translate(200px, 0)}
@@ -87,7 +90,7 @@
   animation: slide 5s forwards;
 }
 
-@keyframes slide {
+@keyframes slideasdf {
   to {transform: translateX(500px)}
 }
 
@@ -116,3 +119,30 @@
   animation-play-state: paused; /* paused unless hovering */
 }
 .bike:hover:after {animation-play-state: running} /* hovering changes the play-state */
+
+
+/*
+ * CHAPTER 12: Canvas, SVG, and Drag and Drop
+ */
+.color-label {
+  position: absolute;
+  left: 450px;
+  top: 950px;
+  font-size: 2rem;
+  z-index: -1;
+}
+.color-pallette {font-size: 1.25rem; font-weight: 700}
+.color {display: inline-block; width: 20px; height: 20px}
+.red {background-color: red}
+.green {background-color: green}
+.blue {background-color: blue}
+
+#canvas {
+  background-color: rgba(248, 248, 255, .25);
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+}
+
+/*
+ * REMEMBER TO REMOVE 'asdf' TO RE-ANIMATE
+ */

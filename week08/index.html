@@ -36,10 +36,47 @@
   <!-- Chapter 12: Canvas, SVG, and Drag and Drop -->
   <section class="framed">
     <h2>Chapter 12: Canvas, SVG, and Drag and Drop</h2>
+    <h3 class="color-label">Click and drag to draw a box</h3>
 
+    <canvas id="canvas" width='1200px' height='300px'>
+      Sorry! Your browser doesn’t support Canvas.
+    </canvas>
+
+    <!-- line color -->
+    <div class="color-pallette">
+      <span>Select a LINE color:</span>
+      <div class="color line red"></div>
+      <div class="color line green"></div>
+      <div class="color line blue"></div>
+    </div>
+    <!-- fill color -->
+    <div class="color-pallette">
+      <span>Select a FILL color:</span>
+      <div class="color fill red"></div>
+      <div class="color fill green"></div>
+      <div class="color fill blue"></div>
+    </div>
+    <button onclick="context.clearRect(0, 0, canvas.width, canvas.height)">Clear Canvas</button>
+    <br>
+    <button onclick="drawPattern()">Add Bike</button>
+    <br>
+    <button onclick="drawGradient()">Add Gradient</button>
+    <br>
+    <button onclick="drawCircle()">Add Circle</button>
+    <br>
+    <button onclick="console.log(context.getImageData(0, 0, 1, 1))">
+      Log <code>ImageData</code> for top-left pixel only
+    </button>
+    <br>
+    <button onclick="convertToGreyScale()">
+      Convert Canvas Drawings to Grey Scale (top-left 100x100 only)
+    </button>
+    <br>
+    <button onclick="saveDrawing()">Save Drawing</button>
+    <p id="imageUrl"></p>
 
   </section>
 
-  
+  <script src="canvas.js"></script>
 </body>
 </html>

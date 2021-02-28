@@ -873,8 +873,23 @@ Negative time delays will start immediately in the position that is •n• seco
 
 
 ### Chapter 12: Canvas, SVG, and Drag and Drop
+•<canvas>•'s •width• and •height• attributes should be set via HTML inline,
+  otherwise the usable area defaults to 300 x 150 (implicitly & only pixels).  
+Pixels are the only acceptable unit of measure for its size.  
+Canvas is an inline-block element.  
+To create & use a canvas:
+•••
+const canvas = document.getElementById('canvas');
+const context = canvas.getContext('2d');
+context.strokeStyle = 'grey';
+context.lineWidth = 4; // pixels as an integer
+context.fillStyle = 'lightgrey';
+context.fillRect(10, 10, 100, 100); // x, y, width, height
+context.strokeRect(10, 10, 100, 120); // x, y, width, height
+•••
 
-
+•context.getImageData(x, y, width, height)• returns an object with •width•, •height•, and
+  •data• (an array of pixel info: R, G, B, A for each pixel, all in sequence)
 
 
 
