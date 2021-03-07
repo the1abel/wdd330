@@ -120,6 +120,7 @@ wwTerminateBtn.addEventListener('click', () => {
 // WEBSOCKET
 let connection;
 document.getElementById('initializeWebsocket').addEventListener('click', () => {
+  document.getElementById('websocketDemo').hidden = false;
   showMsg('Initialized Websocket.  Awaiting connection...');
     const url = 'wss://echo.websocket.org/';
     connection = new WebSocket(url);

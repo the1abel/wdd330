@@ -1032,6 +1032,31 @@ Pop-up even when user is on another tab, but may be intercepted by operating sys
 To send a notification:  
 ►•const notification = new Notification('Title', {body: 'My message.', icon: 'url'})•  
 •notification.close();• to close it  
+Events on the •notification• object include 'click' (user clicks on msg),
+  'show' (when notification appears), and 'close' (when notification is closed).
+
+#### Multimedia
+•<audio>• and •<video>• tags only require a •src• attribute to point to the file.  
+The boolean •controls• attribute determines if the audio/video controls are visible.  
+Methods include:
+ - •video.play()•
+ - •video.pause()•
+ - •video.volume = 0.9• (percentage)
+ - •video.muted = true•
+ - •video.currentTime += 10• jumps forward 10 seconds
+ - •video.playbackRate = 2• (multiple of normal speed)
+ - •video.loop = true•
+ - •video.duration• getter. Should only be queried after the 'loadedmetadata' event has fired
+
+Events include 'play', 'pause', 'volumechange', and 'loadedmetadata'
+
+#### Other APIs
+Include camera, uploading files, accessing the battery status, handling push notifications,
+  building drag-and-drop functionality, creating 3D effects with WebGL, etc.  
+See the [full list on MDN](https://developer.mozilla.org/en-US/docs/Web/API)  
+
+[Modernizr](https://www.npmjs.com/package/modernizr) is a library of shims and polyfills
+  for HTML5 on old browsers.
 
 
 

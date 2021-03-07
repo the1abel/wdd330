@@ -45,14 +45,6 @@
     <button id="pauseSquares" hidden>Pause squares</button>
   </section>
 
-  <!-- Quiz Ninja -->
-  <section class="framed">
-    <h2>Quiz Ninja!</h2>
-    <p>The Quiz Ninja from Week 7 already includes the timing function in
-      <code>week07/quiz.js</code> line 73.<br>
-      See the <a href="../week07">Chapter 11 & 13 Quiz Ninja</a> demo.</p>
-  </section>
-
   <!-- Chapter 14: HTML5 APIs -->
   <section class="framed">
     <h2>Chapter 14: HTML5 APIs</h2>
@@ -70,16 +62,32 @@
     <h3>Websocket</h3>
     <button id="initializeWebsocket">Initialize websocket</button>
     <br>
-    <label for="outboundMsg">Send a message
-      <input type="text" name="outboundMsg" id="outboundMsg">
-    </label>
-    <button id="sendMsg">Send message</button>
-    <div id="msgDisplay"></div>
+    <div id="websocketDemo" hidden>
+      <label for="outboundMsg">Send a message
+        <input type="text" name="outboundMsg" id="outboundMsg">
+      </label>
+      <button id="sendMsg">Send message</button>
+      <div id="msgDisplay"></div>
+    </div>
 
     <!-- notification -->
     <h3>Notification</h3>
     <button id="showNotification">Show notification</button>
 
+    <!-- multimedia -->
+    <h3>Multimedia</h3>
+    <audio src="openhat.wav" controls></audio>
+    <br>
+    <video src="sd.mp4" controls></video>
+
+  </section>
+
+  <!-- Quiz Ninja -->
+  <section class="framed">
+    <h2>Quiz Ninja!</h2>
+    <p>The Quiz Ninja from Week 7 already includes the timing function in
+      <code>week07/quiz.js</code> line 73 and <code>localStorage</code> on lines 126-128.<br>
+      See the <a href="../week07">Chapter 11 & 13 Quiz Ninja</a> demo.</p>
   </section>
 
   <script src="main.js"></script>
