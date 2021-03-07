@@ -83,5 +83,88 @@ pauseSquaresBtn.addEventListener('click', (e) => {
 
 
 /**
- * Chapter 15 Experimenting
+ * Chapter 14 Experimenting
  */
+const one = document.getElementById('one');
+console.log('The data-my-attribute for <p#one> is:', one.dataset.myAttribute);
+
+
+// WEB WORKER
+let worker;
+const wwStartBtn = document.getElementById('wwStart');
+const wwTerminateBtn = document.getElementById('wwTerminate');
+
+wwStartBtn.addEventListener('click', () => {
+  worker = new Worker('webWorker.js');
+  worker.addEventListener('message', (e) => {
+    if (e.data === 'The web worker is now shutting itself down.') {
+      wwStartBtn.hidden = false;
+      wwTerminateBtn.hidden = true;
+      return;
+    }
+    console.log('Msg received in main.js from web worker:', e.data);
+  });
+  wwStartBtn.hidden = true;
+  wwTerminateBtn.hidden = false;
+  alert('Watch the console for web worker messages');
+});
+
+wwTerminateBtn.addEventListener('click', () => {
+  worker.terminate();
+  console.log('Web worker terminated by main.js');
+  wwStartBtn.hidden = false;
+  wwTerminateBtn.hidden = true;
+});
+
+
+// WEBSOCKET
+let connection;
+document.getElementById('initializeWebsocket').addEventListener('click', () => {
+  showMsg('Initialized Websocket.  Awaiting connection...');
+    const url = 'wss://echo.websocket.org/';
+    connection = new WebSocket(url);
+    connection.addEventListener('open', () => {
+      showMsg('Connected.');
+    });
+    connection.addEventListener('message', (e) => {
+      console.log('websocket msg received event:', e);
+      showMsg(e.data, 'inbound');
+    });
+    connection.addEventListener('error', (e) => {
+      showMsg('There was a websocket error: ' + e.data);
+      console.error(e);
+    });
+})
+
+function showMsg(msg, direction = 'inbound') {
+  const p = document.createElement('p');
+  p.innerHTML = msg;
+  p.classList = direction === 'inbound' ? 'msg left' : 'msg right';
+  document.getElementById('msgDisplay').appendChild(p);
+} 
+
+document.getElementById('sendMsg').addEventListener('click', () => {
+  const outboundMsg = document.getElementById('outboundMsg');
+  const msg = outboundMsg.value;
+  showMsg(msg, 'outbound');
+  connection.send(msg);
+  outboundMsg.value = '';
+});
+
+
+// NOTIFICATIONS
+document.getElementById('showNotification').addEventListener('click', () => {
+  Notification.requestPermission()
+  .then((permission) => {
+    if (permission === 'granted') {
+      console.log('permission granted');
+      // send notification
+      new Notification('Abel has something to say', {
+        body: 'This is a notification from week 9!',
+        icon: 'https://ssl.gstatic.com/keep/icon_2020q4v2_128.png',
+      });
+    } else if (permission === 'denied') {
+      console.log('permission denied');
+    }
+  });
+});

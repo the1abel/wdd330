@@ -18,6 +18,10 @@
       transform: translateY(-200px) rotate(45deg);
       background-color: greenyellow;
     }
+    #msgDisplay {border: 1px solid blue; border-radius: 4px; padding: .25rem;}
+    .msg {border: 1px solid grey; border-radius: 4px; padding: .25rem; margin: .25rem;}
+    .right {text-align: left; background-color: lightcyan; margin-right: 3rem;}
+    .right {text-align: right; background-color: lightblue; margin-left: 3rem;}
   </style>
 </head>
 <body>
@@ -25,8 +29,8 @@
 
   <!-- Chapter 9: The Window Object -->
   <section class="framed">
-  <h2>Chapter 9: The Window Object</h2>
-    Click here to <a id="page2link">open Page 2 pop-up window</a>!
+    <h2>Chapter 9: The Window Object</h2>
+    <p>Click here to <a id="page2link">open Page 2 pop-up window</a>!</p>
     <button id="enlargePage2" hidden>Make Page 2 window large</button>
     <button id="closePage2" hidden>Close Page 2 window</button>
     <br>
@@ -51,7 +55,30 @@
 
   <!-- Chapter 14: HTML5 APIs -->
   <section class="framed">
-  <h2>Chapter 14: HTML5 APIs</h2>
+    <h2>Chapter 14: HTML5 APIs</h2>
+    
+    <!-- custom data- attribute -->
+    <h3>data- Attribute</h3>
+    <p id="one" data-my-attribute="1">One (see console for dataset attribute).</p>
+  
+    <!-- web worker -->
+    <h3>Web Worker</h3>
+    <button id="wwStart">Start web worker</button>
+    <button id="wwTerminate" hidden>Terminate web worker</button>
+
+    <!-- websocket -->
+    <h3>Websocket</h3>
+    <button id="initializeWebsocket">Initialize websocket</button>
+    <br>
+    <label for="outboundMsg">Send a message
+      <input type="text" name="outboundMsg" id="outboundMsg">
+    </label>
+    <button id="sendMsg">Send message</button>
+    <div id="msgDisplay"></div>
+
+    <!-- notification -->
+    <h3>Notification</h3>
+    <button id="showNotification">Show notification</button>
 
   </section>
 

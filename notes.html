@@ -977,6 +977,63 @@ document.cookie = \`name=Abel; expires=\${expiryDate.toUTCString()}\`;
 
 
 ### Chapter 14: HTML5 APIs
+#### data- Attribute
+•<html data-my-attribute>• custom HTML data attributes can be set/get via:  
+►•document.getElementById('id').dataset.myAttribute•  
+►•document.querySelector('p[data-my-attribute=\${someVariable}]');•  
+HTML attributes should be *lowercase* and *hyphenated*,
+  but JavaScript properties should be *camelCase*.  
+Value can be stringified JSON.  
+[Wes Bos's Drum Kit lesson](https://github.com/wesbos/JavaScript30/blob/master/01%20-%20JavaScript%20Drum%20Kit/index-FINISHED.html) is a great example of using custom
+  data- attributes & dataset properties to effectively "pair" different types of elements
+
+#### localStorage
+•localStorage.removeItem('name')• remove one property  
+•localStorage.clear()• clear all  
+When values are changed, a 'storage' event is fired on the •window• object with properties:
+ - •key•
+ - •newValue•
+ - •oldValue•
+ - •storageArea• (localStorage or sessionStorage)
+
+#### navigator.geolocation
+•navigator.geolocation.getCurrentPosition((position) => console.log(position));• passes a
+  •position• object to a callback IF user allows location to be shared
+
+#### Web Workers & Service Workers
+A worker is a script that runs on a thread separate to the browser's main thread, without access to the DOM.  
+Chrome prohibits local files to use web workers unless security is explicitly bypassed.  
+•const worker = new Worker('task.js')•  
+•worker.postMessage('Hello');
+
+**Service workers** are a proxy between the browser and the network. By intercepting requests made by the document, service workers can redirect requests to a cache, enabling offline access.  
+**Web workers** are general-purpose scripts that enable us to offload processor-intensive work from the main thread.  
+([Source](https://bitsofco.de/web-workers-vs-service-workers-vs-worklets/))  
+
+The [Service Worker Cookbook](https://serviceworke.rs/) is a collection of working,
+  practical examples of using service workers in modern web sites.  
+
+#### Websocket
+•wss://• is the protocol  
+•const connection = new WebSocket(url);• establish connection and fires an 'open' event on
+  the •connection• object.  
+•connection.send(msg);• to send a message  
+Received messages fire a 'message' event on the •connection• object, with the message
+  contained in the •event.data• property.  
+►•connection.addEventListener('message', (event) => {console.log(event.data)});•  
+The 'close' event is fired when connection ends, optionally via •connection.close()•  
+The 'error' event is fired on any errors, with the error message in the •event.data• property.  
+[Websocket demos](https://www.websocket.org/demos.html)
+
+#### Notifications
+Pop-up even when user is on another tab, but may be intercepted by operating system.  
+•Notification.requestPermission();• to request permission from a user, which returns a
+  promise with a •permission• argument set to either 'granted' or 'denied'.  
+To send a notification:  
+►•const notification = new Notification('Title', {body: 'My message.', icon: 'url'})•  
+•notification.close();• to close it  
+
+
 
 
 ## To be continued...
