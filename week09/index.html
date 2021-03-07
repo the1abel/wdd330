@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 9</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .square {
+      margin: 50px;
+      width: 100px;
+      height: 100px;
+      background-color: lime;
+    }
+    .square:nth-of-type(2) {
+      position: absolute;
+      transform: translateY(-200px) rotate(45deg);
+      background-color: greenyellow;
+    }
+  </style>
+</head>
+<body>
+  <h1>Week 9</h1>
+
+  <!-- Chapter 9: The Window Object -->
+  <section class="framed">
+  <h2>Chapter 9: The Window Object</h2>
+    Click here to <a id="page2link">open Page 2 pop-up window</a>!
+    <button id="enlargePage2" hidden>Make Page 2 window large</button>
+    <button id="closePage2" hidden>Close Page 2 window</button>
+    <br>
+    <textarea id="textInput" cols="100" rows="3"
+        placeholder="Type HTML into me and watch the pop-up window" hidden></textarea>
+
+    <div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <button id="spinSquares">Spin squares</button>
+    <button id="pauseSquares" hidden>Pause squares</button>
+  </section>
+
+  <!-- Quiz Ninja -->
+  <section class="framed">
+    <h2>Quiz Ninja!</h2>
+    <p>The Quiz Ninja from Week 7 already includes the timing function in
+      <code>week07/quiz.js</code> line 73.<br>
+      See the <a href="../week07">Chapter 11 & 13 Quiz Ninja</a> demo.</p>
+  </section>
+
+  <!-- Chapter 14: HTML5 APIs -->
+  <section class="framed">
+  <h2>Chapter 14: HTML5 APIs</h2>
+
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>

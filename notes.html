@@ -206,6 +206,8 @@ Week 3
 NOTE:
 - •setTimeout()• is a method on the •window• object (see Rules 1, 3, and 4)
 
+
+
 ### Chapter 5: Objects
 The •in• operator can be used to check whether an object has a particular property
     (just like •Object#hasOwnProperty()•).
@@ -732,6 +734,7 @@ A **closure** is a variable that is not garbage collected when it goes out of sc
 Therefore, it must have (an) argument(s) and return a value.
 
 
+
 ### Chapter 13: Ajax
 #### Fetch API
 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and
@@ -872,6 +875,7 @@ Negative time delays will start immediately in the position that is •n• seco
 •animation-iteration-count: infinite;• repeats animation  
 
 
+
 ### Chapter 12: Canvas, SVG, and Drag and Drop
 •<canvas>•'s •width• and •height• attributes should be set via HTML inline,
   otherwise the usable area defaults to 300 x 150 (implicitly & only pixels).  
@@ -891,6 +895,88 @@ context.strokeRect(10, 10, 100, 120); // x, y, width, height
 •context.getImageData(x, y, width, height)• returns an object with •width•, •height•, and
   •data• (an array of pixel info: R, G, B, A for each pixel, all in sequence)
 
+
+
+Week 9
+----------------------------------------
+### Chapter 9: The Window Object
+#### Global
+•window• (browser) or •global• (Node.js) are the global objects,
+  to which •this• points in the global scope.  
+To check if a global variable has been defined, use the global object:  
+►•window.a• returns 'undefined' (no error == safe for •if• statements)  
+►•a• returns 'Uncaught ReferenceError: a is not defined' (error)  
+ES6 moved •parseInt()• and •.isNaN()• to be methods of the •Number• object,
+  previously on the global object.  
+•alert()•, •confirm()•, and •prompt()• are thread-blocking.  
+
+•window.navigator• properties contains info about the browser  
+ - •.userAgent• browser
+ - •.location.href• full URL
+ - •.location.toString()• getter for •location.href•
+ - •.location.assign(url)• setter for •location.href•
+ - •.location.origin• domain and protocol
+ - •.location.host• domain and port (port is omitted if default port 80)
+ - •.location.hostname• domain only
+ - •.location.protocol• 'https:' protocol only
+ - •.location.port• '' if default port 80
+ - •.location.pathname• path after the domain
+ - •.location.search• '?q=...' query parameters as string
+ - •.location.hash• #id only
+ - •.location.reload()• reloads the page
+
+•window.history• 
+ - •.length• number of pages in history (includes 'New Tab' in Chrome)
+ - •.scrollRestoration• 'auto' returns to scroll state; 'manual' returns to top of page
+ - •.go(1)• same as •.forward()•
+ - •.go(0)• same as •location.reload()•
+ - •.go(-1)• same as •.back()•
+ - •.pushState()• and •.replaceState()• manipulate history for SPAs
+
+#### Pop-up Window  
+•const myWin = window.open()• opens in separate *Tab*.  
+HOWEVER, it can be opened as a Pop-up ONLY using an •<a>• element that returns •false• from:
+ - the •onclick• JavaScript property (callback)
+ - the •onclick• HTML attribute
+ - •.addEventListener()• should only be used if the •<a>• element does NOT have an •href•
+  (because it won't return •false• to the •<a>• element's click event)
+
+•myWin.close()• close popup  
+•myWin.window.moveTo(x, y)• reposition  
+•myWin.window.resizeTo(width, height)• resize  
+•myWin.window.document• accesses the full DOM of •myWin•  
+
+#### Cookies
+Cookies can store 4Kb of data.  
+20 cookies per domain are allowed.  
+Cookies contain semicolon delimited name-value pairs:
+  •"name=Abel; height=69; colors=red and blue;"•  
+•document.cookie = 'name=Abel Wenning'• to set 1 of 20 allowed cookies (per domain)  
+•const cookies = document.cookie.split('; ')• to get an array of all cookies  
+•const [key, value] = cookies[0].split('=')• to destructure a key-value pair ("crumb")  
+Cookie properties are set after the value: •document.cookie = 'name=Abel; path=/'•  
+•path=/;• allows any page in the root directory to read the cookie  
+•domain=aenonplus.com;• allows subdomains to read the cookie  
+•expires=Thu, 01 Jan 1970 00:00:01 GMT;•  past expiration will remove a cookie  
+To set a future expiration date:
+•••
+const expiryDate = new Date();
+const tomorrow = expiryDate.getTime() + 1000 * 60 * 60 * 24;
+expiryDate.setTime(tomorrow);
+document.cookie = \`name=Abel; expires=\${expiryDate.toUTCString()}\`;
+•••
+•; secure'• at the end ensures it is only transmitted over HTTPS  
+
+#### Timing Functions
+•const timeOutId = setTimeout(() => /* do something */, <milliseconds>)•
+  returns an integer that identifies the function so it can be canceled.  
+•clearTimeout(timeOutId)• to cancel it.  
+•setInterval()• and •clearInterval()• work the same.
+•requestAnimationFrame()• and •cancelAnimationFrame()• work the same.
+
+
+
+### Chapter 14: HTML5 APIs
 
 
 ## To be continued...

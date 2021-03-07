@@ -97,12 +97,12 @@
 /* EXAMPLE FROM BOOK */
 .bike {color: red; font-weight: 900; font-size: 1.5rem}
 /* animate the bicycle pedals using an animated sprite */
-@keyframes bike {
+@keyframes animate-bike-rider {
   0% {background-position: 0 0}
   100% {background-position: -360px 0}
 }
 /* move the bicycle across the page using translated transform functions */
-@keyframes move {
+@keyframes move-bike {
   0% {transform: translateX(-100px)}
   100% {transform: translateX(100px)}
 }
@@ -114,8 +114,8 @@
   width: 90px;
   margin: auto;
   animation:
-    0.4s steps(4, end) infinite 50ms bike,
-    8s linear infinite 50ms move;
+    0.4s steps(4, end) infinite 50ms animate-bike-rider,
+    8s linear infinite 50ms move-bike;
   animation-play-state: paused; /* paused unless hovering */
 }
 .bike:hover:after {animation-play-state: running} /* hovering changes the play-state */
